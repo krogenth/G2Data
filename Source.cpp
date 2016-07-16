@@ -3,7 +3,6 @@
 #include <vector>
 #include <windows.h>
 #include <assert.h>
-#include <iostream>
 
 void writeMS();
 void readMS();
