@@ -22,8 +22,8 @@ What knowledge is needed:
 The main thing anyone who is using this needs to know is the data type ranges: https://msdn.microsoft.com/en-us/library/s3f49ktz.aspx
 The important data ranges are:
 	1 byte  = 0 to 255 OR -128 to 127
-	2 bytes = 0 to 65,535 OR –32,768 to 32,767
-	4 bytes = 0 to 4,294,967,295 OR –2,147,483,648 to 2,147,483,647
+	2 bytes = 0 to 65,535 OR â€“32,768 to 32,767
+	4 bytes = 0 to 4,294,967,295 OR â€“2,147,483,648 to 2,147,483,647
 Please also know that ALL files have to have the same length entries(ie, burn!, burnflame, ba-boom!, etc, need to have the same byte length(108)), any more or less and the data will be
 corrupted, so please make sure you are not adding or removing data from the .txt files.
 
@@ -60,4 +60,4 @@ SK_PARAM.BIN:
 	Same thing as MS_PARAM.BIN, it's entries are literal, only trailing empty entries can be removed.
 
 PC_INIT.BIN:
-	The last 6 entries are jsut copies of Ryudo, all 6 can safely be removed.
+	The last 6 entries are just copies of Ryudo, all 6 can safely be removed.
