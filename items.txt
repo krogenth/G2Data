@@ -1,0 +1,294 @@
+sys.afs
+163A40 - medicinal herb
+
+1ec20 - shoes
+1f660 - snake earrings
+
+1f080 - Mana eggs
+1f440 - Jet black cape
+1f580 - Salamander
+1f920 - Friend's necklace
+
+
+01 - Ryudo
+02 - Elena
+04 - Millenia
+08 - Roan
+10 - Tio
+20 - Mareg
+40 - King Roan
+80 - 
+
+SP
+
+1f - Drain 10% HP
+20 - Drain 20% HP
+21 - Drain 30% HP
+22 - Drain 40% HP
+23 - Drain 50% HP
+24 - Drain 60% HP
+25 - Drain 70% HP
+26 - Drain 80% HP
+27 - Drain 90% HP
+28 - Drain 100% HP
+29 - 10% Damage Heals MP
+32 - Deals MP damage
+33 - +1 Sp Recovery
+34 - +2 Sp Recovery
+35 - +3 Sp Recovery
+36 - +4 Sp Recovery
+37 - +5 Sp Recovery
+38 - Ups Power of Moves
+3a - Ups Power of Moves
+3c - Ups Power of Moves
+3d - Drops Atk lvl
+3e - Drops Def lvl
+48 - May Evade attacks (odd wooden clogs)
+4c - Evasion +5%
+4d - Evasion +10%
+4e - Evasion +15%
+4f - Evasion +20%
+50 - Evasion +25%
+51 - Reduce Ip slow
+52 - Reduce Ip slow
+53 - Suppress Ip Slow
+55 - Suppress Ip Slow
+56 - Damage Up Sp +1
+57 - Damage Up Sp +2
+58 - Damage Up Sp +3
+59 - Damage Up Sp +4
+5a - Damage Up Sp +5
+5c - Negate <100
+5e - Negate <200
+60 - 01% HP Regen
+61 - 02% HP Regen
+62 - 03% HP Regen
+63 - 04% HP Regen
+64 - 05% HP REGEN
+67 - -15% SP Use
+69 - -25% SP Use
+6a - -05% MP Use?
+6b - -10% MP Use
+6c - -15% MP Use
+6e - -25% MP Use
+71 - Sometimes reflect
+73 - Reflect Damage
+74 - +1 Combo
+75 - +2 Combo
+76 - Warp Attack
+77 - Null knock back
+78 - Revive Once
+7a - Magic Immune
+
+
+		CH    ATK    DEF   ACT    MOVE  EF FI  WI EA LT BZ  ST %C                           SP
+WING BOOTS	7f 00 00 00  05 00 00 00  0f 00 00 00  00 02 00 00  00 00 00 00  00 00 00 00  00 00 00 00 
+HEAVY BOOTS	7f 00 00 00  06 00 00 00  0a 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 77 00
+WOLF SHOES											    4c
+SHADOW SHOES											    4d
+REVIVAL GEM											    78
+DASH SHOES	7f 00 00 00  04 00 00 00  0a 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00 
+		20 00 00 00  05 00 00 00  05 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00
+ODD CLOGS	7f 00 00 00  05 00 00 00  05 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 48 00
+
+
+POISON KNIFE	48 00 32 00  00 00 00 00  00 00 00 00  00 00 00 00  01 19 00 00  00 00 00 00  00 00 00 00  
+EXORCISM BOW	04 00 69 00  00 00 00 00  00 00 07 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00
+
+
+Ch - Character Equip
+	01 - Ryudo
+	02 - Elena
+	04 - Millenia
+	08 - Roan
+	10 - Tio
+	20 - Mareg
+	40 - King Roan
+	80 - 
+ATK
+DEF
+ACT
+MOVE
+EF - Effective against monster type
+
+FI - Fire
+WI - Wind
+EA - Earth
+LT - Lightning
+BZ - Blizzard
+
+ST - Status
+
+%C Chance of status
+
+SP - Special Effect
+
+
+14760 8c00.afs walnut game
+
+
+33 Adventure Book
+
+
+3d Seed of Life
+3e Seed of Spells?
+3f Seed of Moves
+40 Seed of Power
+41 Seed of Defense?
+42 Seed of Swift
+43 Seed of Running
+44 Seed of Magic
+
+65 Mystic Potion 200 (6A)
+66 Wound Salve 400
+67 Healing Fruit
+68 Healing Fruit???
+69 Scarlet Potion 
+6A Medicinal Herb All (no)
+6B
+6C
+6D
+6E
+6F Potion of Azure
+70 Scroll of Alheal
+71 Healing Incense
+72 Potion of Azure?
+73
+74
+75
+76
+77
+78
+79
+7A
+7B Yomi elixir
+7C
+7D
+7E
+7F
+80
+81 Eye drops
+82
+83
+84
+85
+86
+87
+88
+89
+8A
+8B
+8C
+8D
+8E Magical Medicine
+8F Grail Fruit
+90 Lumir Flower
+91
+92
+93 xxxx
+94
+95
+96
+97 Golden Potion
+98 Baobab Fruit
+99 Butter Roll
+9A Blueberry
+
+CC Meteor Scroll
+CD Thor Stone
+E4 Silver feather?
+E9 Jet-Black cape
+EC Speed Mushroom
+F2 Myriad Power Nut
+F9 Slowpoke Nut
+
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+12A
+12B
+12C
+12D
+12E Geoblade   1d9c0
+12F Falx
+130 Shamshir
+131 Army Saber
+132 Samurai Sword
+133 Sword of Purity
+134 Flamberge
+135 Shadowblade
+136 Swordfish Sword
+137 Ogre Slayer
+138 Claymore
+139 Fine Broadsword
+13A Sword of Mikage
+13B Silver Freeze
+13C Silence Sword
+13D Maken Valborg
+13E Holy Soul Blade
+13F Thor Sword
+140 Granasaber
+141 Icefang Sword
+142 Blazing Sword
+
+
+
+13C Sword of Purity (correct)
+
+
+
+
+243 Ogre Helm?
+
+2CC Soul of Asura
+2CD Demon's Tears
+
+
+Skillbooks
+
+1 Life Up
+2 Magic Power
+3 Special Power
+4 Strength
+5 Toughness
+6 Speed
+7 Dash
+8 Intelligence
+9 Mentality
+A Zapfire
+B Boomflame
+C Stormcloud
+D Northwind
+E Leafwater
+F Glacier
+10 Quakeblast
+11 Woodland
+12 Wizardry
+13 Mystic
+14 Abandon
+15 Aim for counter
+16 Defensive
+17 Fighting spirit
+18 Decoy
+19 Absorb magic
+1A Magic recover
+1B Move recover
+1C Item recover
+1D Skilled Item use
+1E Pirate's Ring 
+1F Full body blow
+20 Magica esoterica
+21
+22
+23
+
+
+
+
