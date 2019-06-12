@@ -1,0 +1,141 @@
+1	
+2	
+3	
+4	
+5	
+6	
+6	
+7	
+8	
+9	
+10	
+11	
+12	
+13	
+14	
+15	
+16	
+17	
+18	
+19	
+20	
+21	
+22	
+23	
+24	
+25	
+26	
+27	
+28	
+29	
+30	
+31	10% dmg as HP
+32	
+33	
+34	
+35	
+36	
+37	
+38	
+39	
+40	
+41	10% dmg as MP
+42	
+43	
+44	
+45	
+46	
+47	
+48	
+49	
+50	
+51	+1 SP Recov Periodic
+52	+2 SP Recov Periodic
+53	+3 SP Recov Periodic
+54	+4 SP Recov Periodic
+55	+5 SP Recov Periodic
+56	Up power of Moves(?)
+57	
+58	Ups Power of Moves(?)
+59	
+60	Raises Power of Moves(?)
+61	-1 ATK from hit
+62	-1 DEF from hit
+63	-1 MOV from hit
+64	-1 ACT from hit
+65	
+66	
+67	
+68	
+69	
+70	
+71	
+72	Evade Attacks
+73	
+74	
+75	
+76	+5% evasion
+77	+10% evasion
+78	+15% evasion
+79	+20% evasion
+80	+25% evasion
+81	Reduce IP Slowing
+82	Reduce IP Slowing
+83	Suppress IP Slowing
+84	
+85	Suppress IP Slowing
+86	+1 SP Recov Hit
+87	+2 SP Recov Hit
+88	+3 SP Recov Hit
+89	+4 SP Recov Hit
+90	+5 SP Recov Hit
+91	
+92	Negate < 100 dmg
+93	
+94	Negate < 200 dmg
+95	
+96	Restores HP
+97	Restores HP
+98	Restores HP
+99	
+100	Restores HP
+101	-5% SP Consumption
+102	-10% SP Consumption
+103	-15% SP Consumption
+104	-20% SP Consumption
+105	-25% SP Consumption
+106	-5% MP Consumption
+107	-10% MP Consumption
+108	-15% MP Consumption
+109	-20% MP Consumption
+110	-25% MP Consumption
+111	
+112	
+113	Reflect dmg
+114	
+115	Reflect dmg
+116	+1 combo atk
+117	+2 combo atk
+118	Warp
+119	Negates knock-back
+120	Revives Character
+121	
+122	Null Magic
+123	
+124	
+125	
+126	Restore MP 
+127	
+128	
+129	
+130	
+131	
+132	
+133	
+134	
+135	
+136	
+137	
+138	
+139	
+140	
