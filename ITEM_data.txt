@@ -918,6 +918,21 @@ section 3(items, 32(0x20) bytes)
 	02 byte Recovery
 	02 byte Animation
 	01 byte Effective against monster type
+		01(0x01) Bird
+		02(0x02) Bug
+		03(0x03) Reptile
+		04(0x04) Animal
+		05(0x05) Humanoid
+		06(0x06) Unknown
+		07(0x07) Undead
+		08(0x08) Unknown
+		09(0x09) Unknown
+		10(0x0A) Unknown
+		11(0x0B) Unknown
+		12(0x0C) Unknown
+		13(0x0D) Unknown
+		14(0x0E) Unknown
+		15(0x0F) Unknown
 	01 byte Unknown
 	02 byte IP Damage
 	02 byte IP Cancel Damage
@@ -933,12 +948,19 @@ section 3(items, 32(0x20) bytes)
 		07(0x07) Forest
 	01 byte Element Strength
 	01 byte Status Effect
+		01(0x01) Poison
+		02(0x02) Sleep
+		04(0x04) Confusion
+		08(0x08) Plague
+		16(0x10) Magic Block
+		32(0x20) Move Block
+		64(0x40) Death
 	01 byte % Chance of Effect
 	01 byte Strength
 	01 byte Defense
 	01 byte Action
 	01 byte Movement
-	01 byte % Change to Break(?)
+	01 byte % Chance to Break(?)
 	01 byte Special Effect(?)
 	01 byte Unknown
 	01 byte Unknown
