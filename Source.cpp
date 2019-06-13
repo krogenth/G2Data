@@ -68,9 +68,10 @@ int main() {
 
 void writeMS() {
 
-	unsigned _int16 data16 = 0;
-	unsigned _int32 data32 = 0;
-	std::string stringData;
+	uint8_t offset = 0;
+	uint16_t data16 = 0;
+	uint32_t data32 = 0;
+	std::string data;
 	std::bitset<8> binary[108];
 
 	std::ifstream input("data/afs/xls_data/MS_PARAM.txt");
@@ -83,84 +84,120 @@ void writeMS() {
 
 	if (input.is_open()) {
 
-		while (std::getline(input, stringData)) {
+		while (std::getline(input, data)) {
 
-			binary[0] = std::stoi(stringData.substr(0, stringData.find(' ')));
-			stringData.erase(0, stringData.find(' ') + 1);
+			while (data[offset] == ' ')
+				offset++;
 
-			binary[1] = std::stoi(stringData.substr(0, stringData.find(' ')));
-			stringData.erase(0, stringData.find(' ') + 1);
+			//ID/offset
+			binary[0] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+			offset = data.find(' ', static_cast<size_t>(offset));
+
+			while (data[offset] == ' ')
+				offset++;
+
+			//Icon
+			binary[1] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+			offset = data.find(' ', static_cast<size_t>(offset));
 			
+			//Name
 			for (int count = 0; count < 18; count++)
-				binary[2 + count] = stringData[count];
+				binary[2 + count] = data[offset + count + 1];
 
-			stringData.erase(0, 19);
+			data.erase(0, offset + 19);
+			offset = 0;
 
-			data16 = std::stoi(stringData.substr(0, stringData.find(' ')));
+			while (data[offset] == ' ')
+				offset++;
+
+			//Cost
+			data16 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
 			binary[20] = data16 & 0x00FF;
 			binary[21] = (data16 & 0xFF00) >> 8;
-			stringData.erase(0, stringData.find(' ') + 1);
+			offset = data.find(' ', static_cast<size_t>(offset));
 
-			binary[22] = std::stoi(stringData.substr(0, stringData.find(' ')));
-			stringData.erase(0, stringData.find(' ') + 1);
-			binary[23] = std::stoi(stringData.substr(0, stringData.find(' ')));
-			stringData.erase(0, stringData.find(' ') + 1);
+			while (data[offset] == ' ')
+				offset++;
 
-			for (int count = 0; count < 4; count++) {
+			//Target Effect
+			binary[22] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+			offset = data.find(' ', static_cast<size_t>(offset));
 
-				data16 = std::stoi(stringData.substr(0, stringData.find(' ')));
+			while (data[offset] == ' ')
+				offset++;
+
+			//Target Type
+			binary[23] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+			offset = data.find(' ', static_cast<size_t>(offset));
+
+			//strength, power, range, cast lv1, cast lv5, recovery, animation
+			for (int count = 0; count < 7; count++) {
+
+				while (data[offset] == ' ')
+					offset++;
+
+				data16 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
 				binary[24 + (count * 2)] = data16 & 0x00FF;
 				binary[25 + (count * 2)] = (data16 & 0xFF00) >> 8;
-				stringData.erase(0, stringData.find(' ') + 1);
+				offset = data.find(' ', static_cast<size_t>(offset));
 
 			}
 
-			for (int count = 0; count < 8; count++) {
-
-				binary[32 + count] = std::stoi(stringData.substr(0, stringData.find(' ')));
-				stringData.erase(0, stringData.find(' ') + 1);
-
-			}
-
-			/*
-			data32 = std::stoi(stringData.substr(0, stringData.find(' ')));
-			binary[40] = data32 & 0x000000FF;
-			binary[41] = (data32 & 0x0000FF00) >> 8;
-			binary[42] = (data32 & 0x00FF0000) >> 16;
-			binary[43] = (data32 & 0xFF000000) >> 24;
-			stringData.erase(0, stringData.find(' ') + 1);
-			*/
-
+			//unknown 2 bytes
 			for (int count = 0; count < 2; count++) {
 
-				data16 = std::stoi(stringData.substr(0, stringData.find(' ')));
+				while (data[offset] == ' ')
+					offset++;
+
+				binary[38 + count] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
+
+			}
+
+			//IP Damage, IP Cancel Damage, Knockback
+			for (int count = 0; count < 3; count++) {
+
+				while (data[offset] == ' ')
+					offset++;
+
+				data16 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
 				binary[40 + (count * 2)] = data16 & 0x00FF;
 				binary[41 + (count * 2)] = (data16 & 0xFF00) >> 8;
-				stringData.erase(0, stringData.find(' ') + 1);
+				offset = data.find(' ', static_cast<size_t>(offset));
 
 			}
 
-			for (int count = 0; count < 12; count++) {
+			//element, elem strength, status effects, % chance effect, strength, defense, action, movement
+			for (int count = 0; count < 8; count++) {
 
-				binary[44 + count] = std::stoi(stringData.substr(0, stringData.find(' ')));
-				stringData.erase(0, stringData.find(' ') + 1);
+				while (data[offset] == ' ')
+					offset++;
+
+				binary[46 + count] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
 
 			}
 
-			for (int count = 0; count < 6; count++) {
+			//special effect, lv1 - 5, mlt
+			for (int count = 0; count < 7; count++) {
 
-				data16 = std::stoi(stringData.substr(0, stringData.find(' ')));
-				binary[56 + (count * 2)] = data16 & 0x00FF;
-				binary[57 + (count * 2)] = (data16 & 0xFF00) >> 8;
-				stringData.erase(0, stringData.find(' ') + 1);
+				while (data[offset] == ' ')
+					offset++;
+
+				data16 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				binary[54 + (count * 2)] = data16 & 0x00FF;
+				binary[55 + (count * 2)] = (data16 & 0xFF00) >> 8;
+				offset = data.find(' ', static_cast<size_t>(offset));
 
 			}
 
 			for (int count = 0; count < 40; count++)
-				binary[68 + count] = stringData[count];
+				binary[68 + count] = data[offset + count];
 
 			for (int count = 0; count < 108; count++)
 				fputc(binary[count].to_ulong(), output);
+
+			offset = 0;
 
 		}
 
@@ -175,6 +212,9 @@ void writeMS() {
 
 void readMS() {
 
+	uint32_t data = 0;
+	std::bitset<sizeof(unsigned char) * CHAR_BIT> binary;
+
 	std::ifstream input("data/afs/xls_data/MS_PARAM.BIN", std::ios::binary);
 	std::ofstream output("data/afs/xls_data/MS_PARAM.txt");
 
@@ -184,29 +224,19 @@ void readMS() {
 
 	input.close();
 
-	unsigned _int32 data = 0;
-	std::bitset<sizeof(unsigned char) * CHAR_BIT> binary;
-
 	for (unsigned long count = 0; count < buffer.size() - 1; count += 108) {
 
 		//reads and outputs spell/move number, all spell/move numbers follow the entire file, non-filled entries still count
-		binary = (buffer.at(count));
-		output << binary.to_ulong() << ' ';
+		output << std::setw(3) << std::to_string(buffer.at(count)) << ' ';
 
-		//reads and outputs spell/move type
-		binary = (buffer.at(count + 1));
-		output << binary.to_ulong() << ' ';
+		//reads and outputs Icon
+		output << std::setw(2) << std::to_string(buffer.at(count + 1)) << ' ';
 
 		//reads and outputs namespace of spell/move, total of 18 characters
-		for (int counter = 0; counter < 18; counter++) {
+		for (int counter = 0; counter < 18; counter++)
+			output << buffer.at(count + counter + 2);
 
-			binary = (buffer.at(count + counter + 2));
-			data = binary.to_ulong();
-			output << static_cast<unsigned char>(data);
-
-		}
-
-		data = 0;
+		output << ' ';
 
 		//reads in MP/SP cost variable
 		for (int counter = 1; counter >= 0; counter--) {
@@ -217,21 +247,17 @@ void readMS() {
 
 		}
 
-		//MP/SP cost variable
-		output << ' ' << data << ' ';
+		output << std::setw(2) << data << ' ';
+		data = 0;
 
 		//first target variable
-		binary = (buffer.at(count + 22));
-		output << binary.to_ulong() << ' ';
+		output << std::setw(2) << std::to_string(buffer.at(count + 22)) << ' ';
 
 		//second target variable
-		binary = (buffer.at(count + 23));
-		output << binary.to_ulong() << ' ';
+		output << std::setw(2) << std::to_string(buffer.at(count + 23)) << ' ';
 
-		//reads and outputs +strength, power, range, and spell/move cast speed, in that order
-		for (int counting = 0; counting <= 3; counting++) {
-
-			data = 0;
+		//reads and outputs strength, power, range, cast speed lv1, cast speed lv5, recovery time, animation
+		for (int counting = 0; counting < 7; counting++) {
 
 			for (int counter = 1; counter >= 0; counter--) {
 
@@ -241,20 +267,21 @@ void readMS() {
 
 			}
 
-			output << data << ' ';
+			output << std::setw(5) << data << ' ';
+			data = 0;
 
 		}
 
-		for (int counter = 0; counter <= 7; counter++) {
+		//read and output unknown data
+		for (int counter = 0; counter < 2; counter++) {
 
-			binary = (buffer.at(count + 32 + counter));
+			binary = (buffer.at(count + 38 + counter));
 			output << binary.to_ulong() << ' ';
 
 		}
 
-		for (int counting = 0; counting <= 1; counting++) {
-
-			data = 0;
+		//read and output IP Damage, IP Cancel Damage, Knockback
+		for (int counting = 0; counting < 3; counting++) {
 
 			for (int counter = 1; counter >= 0; counter--) {
 
@@ -264,31 +291,29 @@ void readMS() {
 
 			}
 
-			output << data << ' ';
+			output << std::setw(4) << data << ' ';
+			data = 0;
 
 		}
 
-		for (int counter = 0; counter <= 3; counter++) {
+		//reads and outputs element, element strength, status effects, % chance of status effect, attack, defense, act, mov
+		for (int counter = 0; counter < 8; counter++)
+			output << std::setw(3) << std::to_string(buffer.at(count + 46 + counter)) << ' ';
 
-			binary = (buffer.at(count + 44 + counter));
-			output << binary.to_ulong() << ' ';
+		//special effect
+		for (int counter = 1; counter >= 0; counter--) {
 
-		}
-
-		//reads and outputs status effects, % chance of status effect, attack param, defense param, act param, and mov param, special effect, in that order
-		for (int counter = 0; counter <= 6; counter++) {
-
-			binary = (buffer.at(count + 48 + counter));
-			output << binary.to_ulong() << ' ';
+			binary = (buffer.at(count + 54 + counter));
+			data = data << 8;
+			data += binary.to_ulong();
 
 		}
 
-		//reads and outputs unknown value, not sure what it does
-		binary = (buffer.at(count + 55));
-		output << binary.to_ulong() << ' ';
+		output << std::setw(4) << data << ' ';
+		data = 0;
 
-		//reads and outputs level 1 to 5 cost and the level daamge multiplier, in that order
-		for (int counter = 0; counter <= 5; counter++) {
+		//reads and outputs level 1 to 5 cost and the level damage multiplier, in that order
+		for (int counter = 0; counter < 6; counter++) {
 
 			data = 0;
 
@@ -299,18 +324,15 @@ void readMS() {
 			data = data << 8;
 			data += binary.to_ulong();
 
-			output << data << ' ';
+			output << std::setw(4) << data << ' ';
 
 		}
+
+		data = 0;
 
 		//reads and outputs description of the spell/move
-		for (int counter = 0; counter < 40; counter++) {
-
-			binary = (buffer.at(count + 68 + counter));
-			data = binary.to_ulong();
-			output << static_cast<unsigned char>(data);
-
-		}
+		for (int counter = 0; counter < 40; counter++)
+			output << buffer.at(count + 68 + counter);
 
 		output << '\n';
 
@@ -322,8 +344,9 @@ void readMS() {
 
 void writeSK() {
 
-	unsigned _int16 data16 = 0;
-	std::string stringData;
+	uint8_t offset = 0;
+	uint16_t data16 = 0;
+	std::string data;
 	std::bitset<8> binary[104];
 
 	std::ifstream input("data/afs/xls_data/SK_PARAM.txt");
@@ -336,48 +359,66 @@ void writeSK() {
 
 	if (input.is_open()) {
 
-		while (std::getline(input, stringData)) {
+		while (std::getline(input, data)) {
 
 			for (int count = 0; count < 18; count++)
-				binary[count] = stringData[count];
+				binary[count] = data[count];
 
-			stringData.erase(0, 19);
+			data.erase(0, 19);
 
-			binary[18] = std::stoi(stringData.substr(0, stringData.find(' ')));
-			stringData.erase(0, stringData.find(' ') + 1);
-			binary[19] = std::stoi(stringData.substr(0, stringData.find(' ')));
-			stringData.erase(0, stringData.find(' ') + 1);
+			while (data[offset] == ' ')
+				offset++;
+
+			binary[18] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+			offset = data.find(' ', static_cast<size_t>(offset));
+
+			while (data[offset] == ' ')
+				offset++;
+
+			binary[19] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+			offset = data.find(' ', static_cast<size_t>(offset));
 
 			for (int count = 0; count < 9; count++) {
 
-				data16 = std::stoi(stringData.substr(0, stringData.find(' ')));
+				while (data[offset] == ' ')
+					offset++;
+
+				data16 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
 				binary[20 + (count * 2)] = data16 & 0x00FF;
 				binary[21 + (count * 2)] = (data16 & 0xFF00) >> 8;
-				stringData.erase(0, stringData.find(' ') + 1);
 
 			}
 
 			for (int count = 0; count < 14; count++) {
 
-				binary[38 + count] = std::stoi(stringData.substr(0, stringData.find(' ')));
-				stringData.erase(0, stringData.find(' ') + 1);
+				while (data[offset] == ' ')
+					offset++;
+
+				binary[38 + count] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
 
 			}
 
 			for (int count = 0; count < 6; count++) {
 
-				data16 = std::stoi(stringData.substr(0, stringData.find(' ')));
+				while (data[offset] == ' ')
+					offset++;
+
+				data16 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
 				binary[52 + (count * 2)] = data16 & 0x00FF;
 				binary[53 + (count * 2)] = (data16 & 0xFF00) >> 8;
-				stringData.erase(0, stringData.find(' ') + 1);
 
 			}
 
 			for (int count = 0; count < 40; count++)
-				binary[64 + count] = stringData[count];
+				binary[64 + count] = data[offset + count + 1];
 
 			for (int count = 0; count < 104; count++)
 				fputc(binary[count].to_ulong(), output);
+
+			offset = 0;
 
 		}
 
@@ -392,6 +433,9 @@ void writeSK() {
 
 void readSK() {
 
+	unsigned _int32 data = 0;
+	std::bitset<sizeof(unsigned char) * CHAR_BIT> binary;
+
 	//SK_PARAM each entry is 104 bytes long
 	std::ifstream input("data/afs/xls_data/SK_PARAM.BIN", std::ios::binary);
 	std::ofstream output("data/afs/xls_data/SK_PARAM.txt");
@@ -401,9 +445,6 @@ void readSK() {
 		(std::istreambuf_iterator<char>()));
 
 	input.close();
-
-	unsigned _int32 data = 0;
-	std::bitset<sizeof(unsigned char) * CHAR_BIT> binary;
 
 	for (unsigned long count = 0; count < buffer.size() - 1; count += 104) {
 
@@ -425,7 +466,7 @@ void readSK() {
 
 		}
 
-		//reads and outputs HP, MP, SP, STR, VIT, ACT, MOV, MAG, MEN, in that order
+		//reads and outputs HP, MP, SP, STR, VIT, ACT, MOV, MAG, MEN
 		for (int counter = 0; counter <= 8; counter++) {
 
 			for (int counting = 1; counting >= 0; counting--) {
@@ -436,13 +477,13 @@ void readSK() {
 
 			}
 
-			output << data << ' ';
+			output << std::setw(2) << data << ' ';
 
 			data = 0;
 
 		}
 
-		//reads and outputs FI, WI, EA, LI, BZ, WA, EX, FO, Special Effect, in that order
+		//reads and outputs FI, WI, EA, LI, BZ, WA, EX, FO, Special Effect
 		for (int counter = 0; counter < 14; counter++) {
 
 			binary = (buffer.at(count + 38 + counter));
@@ -450,7 +491,7 @@ void readSK() {
 
 		}
 
-		//reads and outputs level 1 to 5 cost and the skill multiplier, in that order
+		//reads and outputs level 1 to 5 cost and the skill multiplier
 		for (int counter = 0; counter <= 5; counter++) {
 
 			for (int counting = 1; counting >= 0; counting--) {
@@ -461,7 +502,7 @@ void readSK() {
 
 			}
 
-			output << data << ' ';
+			output << std::setw(4) << data << ' ';
 			data = 0;
 
 		}
@@ -484,9 +525,10 @@ void readSK() {
 
 void writeTB() {
 
-	unsigned _int16 data16 = 0;
-	unsigned _int32 data32 = 0;
-	std::string stringData;
+	uint8_t offset = 0;
+	uint16_t data16 = 0;
+	uint32_t data32 = 0;
+	std::string data;
 	std::bitset<8> binary[24];
 
 	std::ifstream input("data/afs/xls_data/TB_LVUP.txt");
@@ -499,26 +541,34 @@ void writeTB() {
 
 	if (input.is_open()) {
 
-		while (std::getline(input, stringData)) {
+		while (std::getline(input, data)) {
 
-			data32 = std::stoi(stringData.substr(0, stringData.find(' ') + 1));
+			while (data[offset] == ' ')
+				offset++;
+
+			data32 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+			offset = data.find(' ', static_cast<size_t>(offset));
 			binary[0] = data32 & 0x000000FF;
 			binary[1] = (data32 & 0x0000FF00) >> 8;
 			binary[2] = (data32 & 0x00FF0000) >> 16;
 			binary[3] = (data32 & 0xFF000000) >> 24;
-			stringData.erase(0, stringData.find(' ') + 1);
 
 			for (int count = 0; count < 10; count++) {
 
-				data16 = std::stoi(stringData.substr(0, stringData.find(' ') + 1));
+				while (data[offset] == ' ')
+					offset++;
+
+				data16 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
 				binary[4 + (count * 2)] = data16 & 0x00FF;
 				binary[5 + (count * 2)] = (data16 & 0xFF00) >> 8;
-				stringData.erase(0, stringData.find(' ') + 1);
 
 			}
 
 			for (int count = 0; count < 24; count++)
 				fputc(binary[count].to_ulong(), output);
+
+			offset = 0;
 
 		}
 
@@ -559,7 +609,7 @@ void readTB() {
 
 		}
 
-		output << data << ' ';
+		output << std::setw(7) << data << ' ';
 		data = 0;
 
 		//reads and outputs HP, MP, SP, STR, VIT, MAG, MEN, ACT, MOV, gained from each level up, in that order
@@ -573,7 +623,7 @@ void readTB() {
 
 			}
 
-			output << data << ' ';
+			output << std::setw(3) << data << ' ';
 			data = 0;
 
 		}
@@ -588,38 +638,48 @@ void readTB() {
 
 void writePC() {
 
-	unsigned _int32 data32 = 0;
-	std::string stringData;
-	std::bitset<8> binary[80];
-
 	std::ifstream input("data/afs/xls_data/PC_INIT.txt");
 	FILE* output;
 	fopen_s(&output, "data/afs/xls_data/PC_INIT.BIN", "w+b");
 	assert(output);
+
+	uint32_t data32 = 0;
+	uint16_t offset = 0;
+	std::string data;
+	std::bitset<8> binary[80];
 
 	input.clear();
 	input.seekg(0, std::ios::beg);
 
 	if (input.is_open()) {
 
-		while (std::getline(input, stringData)) {
+		while (std::getline(input, data)) {
 
-			data32 = std::stoi(stringData.substr(0, stringData.find(' ') + 1));
+			while (data[offset] == ' ')
+				offset++;
+
+			data32 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
 			binary[0] = data32 & 0x000000FF;
 			binary[1] = (data32 & 0x0000FF00) >> 8;
 			binary[2] = (data32 & 0x00FF0000) >> 16;
 			binary[3] = (data32 & 0xFF000000) >> 24;
-			stringData.erase(0, stringData.find(' ') + 1);
+
+			offset = data.find(' ', static_cast<size_t>(offset));
 
 			for (int count = 0; count < 76; count++) {
 
-				binary[4 + count] = std::stoi(stringData.substr(0, stringData.find(' ') + 1));
-				stringData.erase(0, stringData.find(' ') + 1);
+				while (data[offset] == ' ')
+					offset++;
+
+				binary[4 + count] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
 
 			}
 
 			for (int count = 0; count < 80; count++)
 				fputc(binary[count].to_ulong(), output);
+
+			offset = 0;
 
 		}
 
@@ -660,13 +720,13 @@ void readPC() {
 
 		}
 
-		output << data << ' ';
+		output << std::setw(4) << data << ' ';
 
 		//reads and outputs mostly data I don't know the purpose of(if anyone figures this shit out, let me know)
 		for (int counter = 0; counter < 76; counter++) {
 
 			binary = (buffer.at(count + counter + 4));
-			output << binary.to_ulong() << ' ';
+			output << std::setw(3) << binary.to_ulong() << ' ';
 
 		}
 
@@ -762,7 +822,7 @@ void writeIT() {
 
 			itemOffset++;
 
-			//Character bitflag, Strength, Defense, Movement, Action
+			//Character bitflag, Strength, Defense, Action, Movement
 			for (uint8_t count = 0; count < 0x05; count++) {
 
 				while (item[1][offset] == ' ')
@@ -881,7 +941,7 @@ void writeIT() {
 				temp = 0;
 			}
 
-			//Element, Elem Strength, Status Effect, % Chance Effect, Strength, Defense, Movement, Action, % Chance break, ?, ?, ?
+			//Element, Elem Strength, Status Effect, % Chance Effect, Strength, Defense, Action, Movement, % Chance break, ?, ?, ?
 			for (uint8_t count = 0; count < 0x0C; count++) {
 
 				while (item[1 + itemOffset][offset] == ' ')
@@ -1017,7 +1077,7 @@ void readIT() {
 
 			uint8_t eEntryIndex = 0;
 
-			//Character bitflag, Strength, Defense, Movement, Action
+			//Character bitflag, Strength, Defense, Action, Movement
 			for (uint8_t counter = 0; counter < 5; counter++) {
 				for (int8_t counting = 1; counting >= 0; counting--) {
 					binary = (buffer[eIndex + (counter * 2) + counting]);
@@ -1101,7 +1161,7 @@ void readIT() {
 
 			iEntryIndex += 0x04;
 
-			//Strength, Defense, Movement, Action, % Chance break, ?, ?, ?
+			//Strength, Defense, Action, Movement, % Chance break, ?, ?, ?
 			for (uint8_t counter = 0; counter < 0x08; counter++)
 				output << std::setw(3) << std::to_string(static_cast<char>(buffer[iIndex + iEntryIndex + counter])) << ' ';
 
