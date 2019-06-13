@@ -449,22 +449,14 @@ void readSK() {
 	for (unsigned long count = 0; count < buffer.size() - 1; count += 104) {
 
 		//reads and outputs namespace of skills, total of 18 characters
-		for (int counter = 0; counter < 18; counter++) {
-
-			binary = (buffer.at(count + counter));
-			output << static_cast<unsigned char>(binary.to_ulong());
-
-		}
+		for (int counter = 0; counter < 18; counter++)
+			output << buffer.at(count + counter);
 
 		output << ' ';
 
 		//reads in MP/SP cost variable
-		for (int counter = 0; counter <= 1; counter++) {
-
-			binary = (buffer.at(count + 18 + counter));
-			output << binary.to_ulong() << ' ';
-
-		}
+		for (int counter = 0; counter <= 1; counter++)
+			output << std::to_string(buffer.at(count + 18 + counter)) << ' ';
 
 		//reads and outputs HP, MP, SP, STR, VIT, ACT, MOV, MAG, MEN
 		for (int counter = 0; counter <= 8; counter++) {
@@ -484,12 +476,8 @@ void readSK() {
 		}
 
 		//reads and outputs FI, WI, EA, LI, BZ, WA, EX, FO, Special Effect
-		for (int counter = 0; counter < 14; counter++) {
-
-			binary = (buffer.at(count + 38 + counter));
-			output << binary.to_ulong() << ' ';
-
-		}
+		for (int counter = 0; counter < 14; counter++)
+			output << std::setw(2) << std::to_string(buffer.at(count + 38 + counter)) << ' ';
 
 		//reads and outputs level 1 to 5 cost and the skill multiplier
 		for (int counter = 0; counter <= 5; counter++) {
@@ -508,12 +496,8 @@ void readSK() {
 		}
 
 		//reads and outputs the description of the skill
-		for (int counter = 0; counter < 40; counter++) {
-
-			binary = (buffer.at(count + counter + 64));
-			output << static_cast<unsigned char>(binary.to_ulong());
-
-		}
+		for (int counter = 0; counter < 40; counter++)
+			output << buffer.at(count + counter + 64);
 
 		output << '\n';
 

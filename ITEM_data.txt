@@ -842,8 +842,8 @@ section 2(equipment, 28(0x1C) bytes)
 		64(0x40) Prince Roan
 	02 byte Strength
 	02 byte Defense
-	02 byte Movement
 	02 byte Action
+	02 byte Movement
 	01 byte Effective against monster type
 		01(0x01) Bird
 		02(0x02) Bug
@@ -936,8 +936,8 @@ section 3(items, 32(0x20) bytes)
 	01 byte % Chance of Effect
 	01 byte Strength
 	01 byte Defense
-	01 byte Movement
 	01 byte Action
+	01 byte Movement
 	01 byte % Change to Break(?)
 	01 byte Special Effect(?)
 	01 byte Unknown
