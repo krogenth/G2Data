@@ -33,11 +33,12 @@ How the files are detailed between several .txt files provided with this program
 	SK_PARAM_data.txt
 	TB_LVUP_data.txt
 	PC_INIT_data.txt
+	ITEM_data.txt
 	magic.txt
 	lvlup.txt
 	pcinit.txt
 
-Included by not used by this program yet:
+Woog's data files included:
 	enemycompare.txt
 	eskills.txt
 	items.txt
@@ -52,7 +53,7 @@ Other information:
 
 I learned a few things messing around with the files:
 MS_PARAM.BIN:
-	The game this file literally. It does not care about the ID at the start of the spell/move, it might as well not exist. However, you can safely remove any empty entries at the 
+	The game reads this file literally. It does not care about the ID at the start of the spell/move, it might as well not exist. However, you can safely remove any empty entries at the 
 end of the file(after Taint of WInd), and the game will still work perfectly). If you try to remove the empty entries between spells/moves, then the spells/moves will be off-place
 (i.e. - if you remove 1 entry before Tenseiken Slash, Ryudo will have a start of Flying Tenseiken, Purple Lightning, and Sky Dragon Slash, with the old Sky Dragon Slash being an empty entry.
 
@@ -61,3 +62,5 @@ SK_PARAM.BIN:
 
 PC_INIT.BIN:
 	The last 6 entries are just copies of Ryudo, all 6 can safely be removed.
+ITEM.BIN
+	There are 3 different sections: the initial entry of the item, and 2 different types of "definitions." The definitions are for different types of items, one being for equipment, the other for usable items. Some equipment can have both an equipment definition and item definition.
