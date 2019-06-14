@@ -705,6 +705,7 @@ EXP     HP   MP   SP   STR  VIT  MAG  MEN  ACT  MOV  SKI	-	PRINCE
 2434465 7    0    2    1    1    1    0    1    1    0    
 2500000 5    1    2    2    1    0    1    2    2    0    
 
+Starts at Level 01, NOT Level 00
 
 EXP	-	4 bytes		-	EXP needed for this level(not the line it's on, but the previous line; EXP is reset after each level up)
 HP	-	2 bytes		-	HP gained from level up
