@@ -319,7 +319,7 @@
         Army Saber +32 ATK  Sword used in the army            4   1  15  15  14   0          750      64032         -1 318 :;  1  32   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 :;
           Shamshir +26 ATK Lion's tail-shaped curved sword    4   1  15  15  14   0          620      64004         -1 319 :;  1  26   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 :;
               Falx +22 ATK  A scythe-shaped curved sword      4   1  15  15  14   0          500      63976         -1 320 :;  1  22   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 :;
-          Geoblade +18 ATK  A common Geohound's sword         4   1  15  15  14   0          400      63948         -1 321 :;  1  18   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 103 :;
+          Geoblade +18 ATK  A common Geohound's sword         4   1  15  15  14   0          400      63948         -1 321 :;  1  18   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 :;
    Zero Broadsword +0 ATK  Powerless curved sword             4   1  15  15  14   0            0      63920         -1 322 :;  1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 :;
                                                               0   0   0   0   0   0            0         -1         -1 323 :;
                                                               0   0   0   0   0   0            0         -1         -1 324 :;
@@ -797,6 +797,7 @@
    Pretty Bracelet Very valuable bracelet                     8   1  35  35  35   0         5000      71956         -1 796 :;127   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 :;
        Pretty Ring Very valuable ring                         8   1  34  34  34   0         1000      71900         -1 797 :;127   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 :;
   Friends Necklace +25 DEF  Symbol of earnest friendship      8   1  53  53  36   0         2500      71984         -1 798 :;127   0  25   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 :;
+
 
 
 

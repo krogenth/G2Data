@@ -9,9 +9,9 @@
 8	
 9	
 10	
-11	Howlnado(?)
+11	(Howlnado)
 12	Gravity
-13	
+13	(Droplet of Life, Vitality March)
 14	Spellbinding Eye
 15	
 16	
@@ -39,21 +39,21 @@
 38	80% dmg as HP
 39	90% dmg as HP
 40	100% dmg as HP
-41	10% dmg as MP
-42	20% dmg as MP
-43	30% dmg as MP
-44	40% dmg as MP
-45	50% dmg as MP
-46	60% dmg as MP
-47	70% dmg as MP
-48	80% dmg as MP
-49	90% dmg as MP
-50	100% dmg as MP
-51	+1 SP Recov Periodic
-52	+2 SP Recov Periodic
-53	+3 SP Recov Periodic
-54	+4 SP Recov Periodic
-55	+5 SP Recov Periodic
+41	10% dmg as MP(!BROKEN!)
+42	20% dmg as MP(!BROKEN!)
+43	30% dmg as MP(!BROKEN!)
+44	40% dmg as MP(!BROKEN!)
+45	50% dmg as MP(!BROKEN!)
+46	60% dmg as MP(!BROKEN!)
+47	70% dmg as MP(!BROKEN!)
+48	80% dmg as MP(!BROKEN!)
+49	90% dmg as MP(!BROKEN!)
+50	100% dmg as MP(!BROKEN!)
+51	+1 SP Regen
+52	+2 SP Regen
+53	+3 SP Regen
+54	+4 SP Regen
+55	+5 SP Regen
 56	Up power of Moves(what does it do?)(Black Belt)
 57	
 58	Ups Power of Moves(what does it do?)(Aura Armor, King's Pride)
@@ -89,16 +89,16 @@
 88	+3 SP Recov Hit
 89	+4 SP Recov Hit
 90	+5 SP Recov Hit
-91	
+91	Negate < 50 dmg(?)
 92	Negate < 100 dmg
-93	
+93	Negate < 150 dmg(?)
 94	Negate < 200 dmg
-95	
-96	Restores HP
-97	Restores HP
-98	Restores HP
-99	
-100	Restores HP
+95	Negate < 250 dmg(?)
+96	1% HP Regen
+97	2% HP Regen
+98	3% HP Regen
+99	4% HP Regen
+100	5% HP Regen
 101	-5% SP Consumption
 102	-10% SP Consumption
 103	-15% SP Consumption
@@ -109,10 +109,10 @@
 108	-15% MP Consumption
 109	-20% MP Consumption
 110	-25% MP Consumption
-111	
-112	
+111	Reflect dmg(?)
+112	Reflect dmg(?)
 113	Reflect dmg
-114	
+114	Reflect dmg(?)
 115	Reflect dmg
 116	+1 combo atk
 117	+2 combo atk
@@ -124,11 +124,11 @@
 123	
 124	
 125	
-126	Restore MP 
-127	
-128	
-129	
-130	
+126	1% MP Regen
+127	2% MP Regen
+128	3% MP Regen
+129	4% MP Regen
+130	5% MP Regen
 131	
 132	
 133	
