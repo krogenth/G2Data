@@ -278,6 +278,7 @@ ZERA VALMAR 'Ba-Boom'		20 00 20 00  20 00 20 00  20 00 20 00  c8 00 bc 00  ea 00
 ZERA VALMAR 'Gadzap'		20 00 20 00  20 00 20 00  20 00 c7 00  ea 00 eb 00  a6 00 01 00  00 00 09 06  18 01 d0 02  2c 01 04 00  00 00 00 00  00 00 3c 00  80 3e 1b 01  dc 05 00 00  50 00 03 0a  04 46 00 00  00 00 00 00
 ZERA VALMAR 'Breath of God'	20 00 20 00  20 00 20 00  20 00 d3 f1  80 00 e1 f4  cf f0 01 00  00 00 03 04  00 00 00 00  00 00 01 00  00 00 00 00  00 00 1e 00  f8 2a 18 00  00 00 00 00  00 00 00 00  00 00 01 01  01 01 00 00
 
+* - Start of move data(excluding name)
 MP - MP cost of move
 SP - SP cost of move
 T2? - Target Type(?)(Really unsure about this)
