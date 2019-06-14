@@ -125,14 +125,14 @@ IPCS - IP Delay Cancel Stun(Duration Enemy IP does not move after being cancelle
 EV - EVADE
 FI,WI,EA,LT,BZ - ELEMENT RESIST
 ST - STATUS RESIST
-	01 - Poison
-	02 - Sleep
-	04 - Paralysis
-	08 - Confusion
-	10 - Plague
-	20 - Magic Block
-	40 - Move Block
-	80 - Dead
+	001(0x01) Poison
+	002(0x02) Sleep
+	004(0x04) Paralysis
+	008(0x08) Confusion
+	016(0x10) Plague
+	032(0x20) Magic Block
+	064(0x40) Move Block
+	128(0x80) Death
 EXP - 
 SKILLCOINS -
 MAGICCOINS -
@@ -140,4 +140,10 @@ GP -
 ITEM# - Dropped Item
 % - % chance of drop
 STR -
-ASPD - Attack Speed
+AI Start - Enemy AI controls
+	1 byte Entry condition
+	1 byte % chance to use 1st enemy move
+	1 byte % chance to use 2nd enemy move
+	1 byte % chance to use 3rd enemy move
+	1 byte % chance to use 4th enemy move
+	1 byte % chance to use 5th enemy move
