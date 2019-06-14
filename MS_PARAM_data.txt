@@ -1,4 +1,4 @@
-OFF  ICON            Name  C T1  T2  STR   POW Range Cast1 Cast5   Rec   Ani ? ?   IP  IPC   KB   E  ES   S   % ATK DEF ACT MOV   SP  LV1  LV2  LV3  LV4  LV5  Mlt Desc
+OFF  ICON            Name  C T1  T2  STR   POW Range Cast1 Cast5   Rec   Ani ? ?   IP  IPC   KB   EL ES   S   % ATK DEF ACT MOV   SP  LV1  LV2  LV3  LV4  LV5  Mlt Desc
   0  0                     0  0  0     0     0     0     0     0     0     0 0 0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
   1  1              Burn!  6  6  4    40   250     0   180    30 12000     1 0 0    0    0   80   0  10   0   0   0   0   0   0    0  120   60   90  150  240   25 Attack enemy with fireballs             
   2  1          Burnflame 16  6  5    70   250   600   240    40 12000     2 0 0    0    0   50   0  10   0   0   0   0   0   0    0  160   80  120  200  320   25 Attack with a huge pillar of fire       
@@ -86,7 +86,7 @@ OFF  ICON            Name  C T1  T2  STR   POW Range Cast1 Cast5   Rec   Ani ? ?
   0  0                     0  0  0     0     0     0     0     0     0     0 0 0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
  85 16       Lotus Flower 28  5  7    20   200   150   240     0 12000    85 0 1 1000 1500  150   0   0   0   0   0 255   0   0    0  500  250  500 1000 2000   50 A splendid attack Cancel effect         
  86  2            Tornado 48  6  6   130   200     0   360    60 13000    86 0 1  750    0    0   1   8   8  25   0   0   0   0    0 1000  500 1000 2000 4000   75 A dance move that stops wind currents   
- 87 16   Fast Dance-Whirl 43  5  4   200   200     0   490    30 14000    87 0 1 1500    0  200   0   0   0   0   0   0   0   0   40  800  400  800 1600 3200   60 A legendary attack dance                
+ 87 16   Fast Dance-Whirl 43  5  4   200   200     0   490    30 14000    87 0 1 1500    0  200   0   0   0   0   0   0   0   0    0  800  400  800 1600 3200   60 A legendary attack dance                
  88 16   Whisper to Stars 36  4  3     0     0     0   300    30 12000    88 0 0    0    0    0   0   0   0   0   1   1   1   1    0  600  300  600 1200 2400    0 Power of stars raise all variable status
   0  0                     0  0  0     0     0     0     0     0     0     0 0 0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
   0  0                     0  0  0     0     0     0     0     0     0     0 0 0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
@@ -99,7 +99,7 @@ OFF  ICON            Name  C T1  T2  STR   POW Range Cast1 Cast5   Rec   Ani ? ?
  97 14      Golden Hammer 26  5  4    50   250     0   240     0 12000    97 0 1 1500 2000   80   0   0   8  10   0   0   0   0    0  500  250  500 1000 2000   50 Attack with a hammer Cancel effect      
  98  5         Ice Prison 75  5  4   300   250     0   400    30 12000    98 0 1 1000    0  200   4   8   0   0   0   0 255 255    0  700  350  700 1400 2800   80 Deadly slash with cold                  
  99 14   True Dragon Rise 60  5  4     0     0     0   530    30 14000    99 0 1 1750    0  200   0 128 100   0   0   0   0   0    0  800  400  800 1600 3200   65 True legendary esoteric attack          
-100 14     Vitality March 30  4 10     0     0   600   210    30 13000   100 0 0 2500    0    0   0   0 127 100   0   0   0   0   13  400  200  400  800 1600    0 Cures status |disorders                 
+100 14     Vitality March 30  4 10     0     0   600   210    30 13000   100 0 0 2500    0    0   0   0 127 100   0   0   0   0    0  400  200  400  800 1600    0 Cures status |disorders                 
 101  0      Taint of Wind  0 15 13     0     0   600    60    60 12000     0 0 1 5000    0  800   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
   0  0                     0  0  0     0     0     0     0     0     0     0 0 0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
   0  0                     0  0  0     0     0     0     0     0     0     0 0 0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
@@ -129,7 +129,7 @@ OFF  ICON            Name  C T1  T2  STR   POW Range Cast1 Cast5   Rec   Ani ? ?
   0  0                     0  0  0     0     0     0     0     0     0     0 0 0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
 
 01 byte OFF - entry # offset
-01 byte ICON - icon used for entry
+01 byte ICON - icon used for entry(1 + element type)
 	01(0x01) Fire
 	02(0x02) Wind
 	03(0x03) Earth
@@ -194,14 +194,15 @@ OFF  ICON            Name  C T1  T2  STR   POW Range Cast1 Cast5   Rec   Ani ? ?
 	03(0x03) Lightning
 	04(0x04) Blizzard
 01 byte ES - element strength of spell/move
-01 byte S - status effect
-	01(0x01) Poison
-	02(0x02) Sleep
-	04(0x04) Confusion
-	08(0x08) Plague
-	16(0x10) Magic Block
-	32(0x20) Move Block
-	64(0x40) Death
+01 byte S - status effect bitflag(Add together for multiple effects)
+	001(0x01) Poison
+	002(0x02) Sleep
+	004(0x04) Paralysis
+	008(0x08) Confusion
+	016(0x10) Plague
+	032(0x20) Magic Block
+	064(0x40) Move Block
+	128(0x80) Death
 01 byte % - % chance of status effect
 02 byte ATK - attack stat change
 02 byte DEF - defense stat change

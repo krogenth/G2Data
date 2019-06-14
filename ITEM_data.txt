@@ -925,7 +925,7 @@ section 3(items, 32(0x20) bytes)
 		05(0x05) Humanoid
 		06(0x06) Unknown
 		07(0x07) Undead
-		08(0x08) Unknown
+		08(0x08) Valmar(?)
 		09(0x09) Unknown
 		10(0x0A) Unknown
 		11(0x0B) Unknown
@@ -962,6 +962,6 @@ section 3(items, 32(0x20) bytes)
 	01 byte Action
 	01 byte Movement
 	01 byte % Chance to Break(?)
-	01 byte Special Effect(?)
+	01 byte Special Effect(?)(Not the same as Moves/Spells/Weapon Special Effects)
 	01 byte Unknown
 	01 byte Unknown
