@@ -188,6 +188,11 @@ OFF  ICON            Name  C T1  T2  STR   POW Range Cast1 Cast5   Rec   Ani ? ?
 02 byte IPC - IP cancel damage from spell/move
 02 byte KB - knockback from spell/move
 01 byte E - element of spell/move
+	00(0x00) Fire
+	01(0x01) Wind
+	02(0x02) Earth
+	03(0x03) Lightning
+	04(0x04) Blizzard
 01 byte ES - element strength of spell/move
 01 byte S - status effect
 	01(0x01) Poison

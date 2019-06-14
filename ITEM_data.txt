@@ -937,7 +937,7 @@ section 3(items, 32(0x20) bytes)
 	02 byte IP Damage
 	02 byte IP Cancel Damage
 	02 byte Knockback
-	01 byte Element Type(MS_PARAM Type - 1) 19
+	01 byte Element Type
 		00(0x00) Fire
 		01(0x01) Wind
 		02(0x02) Earth
@@ -947,14 +947,15 @@ section 3(items, 32(0x20) bytes)
 		06(0x06) Explosion
 		07(0x07) Forest
 	01 byte Element Strength
-	01 byte Status Effect
-		01(0x01) Poison
-		02(0x02) Sleep
-		04(0x04) Confusion
-		08(0x08) Plague
-		16(0x10) Magic Block
-		32(0x20) Move Block
-		64(0x40) Death
+	01 byte S - status effect bitflag(Add together for multiple effects)
+		001(0x01) Poison
+		002(0x02) Sleep
+		004(0x04) Paralysis
+		008(0x08) Confusion
+		016(0x10) Plague
+		032(0x20) Magic Block
+		064(0x40) Move Block
+		128(0x80) Death
 	01 byte % Chance of Effect
 	01 byte Strength
 	01 byte Defense

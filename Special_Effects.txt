@@ -9,10 +9,10 @@
 8	
 9	
 10	
-11	
-12	
+11	Howlnado(?)
+12	Gravity
 13	
-14	
+14	Spellbinding Eye
 15	
 16	
 17	
@@ -30,35 +30,35 @@
 29	
 30	
 31	10% dmg as HP
-32	
-33	
-34	
-35	
-36	
-37	
-38	
-39	
-40	
+32	20% dmg as HP
+33	30% dmg as HP
+34	40% dmg as HP
+35	50% dmg as HP
+36	60% dmg as HP
+37	70% dmg as HP
+38	80% dmg as HP
+39	90% dmg as HP
+40	100% dmg as HP
 41	10% dmg as MP
-42	
-43	
-44	
-45	
-46	
-47	
-48	
-49	
-50	
+42	20% dmg as MP
+43	30% dmg as MP
+44	40% dmg as MP
+45	50% dmg as MP
+46	60% dmg as MP
+47	70% dmg as MP
+48	80% dmg as MP
+49	90% dmg as MP
+50	100% dmg as MP
 51	+1 SP Recov Periodic
 52	+2 SP Recov Periodic
 53	+3 SP Recov Periodic
 54	+4 SP Recov Periodic
 55	+5 SP Recov Periodic
-56	Up power of Moves(?)
+56	Up power of Moves(what does it do?)(Black Belt)
 57	
-58	Ups Power of Moves(?)
+58	Ups Power of Moves(what does it do?)(Aura Armor, King's Pride)
 59	
-60	Raises Power of Moves(?)
+60	Raises Power of Moves(what does it do?)(Holy Sword Armor)
 61	-1 ATK from hit
 62	-1 DEF from hit
 63	-1 MOV from hit
