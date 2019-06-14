@@ -4,7 +4,7 @@ Grandia 2 Data reading/writing
 
 What this does:
 
-This is a program that takes MS_PARAM.BIN, SK_PARAM.BIN, PC_INIT.BIN, and TB_LVUP.BIN and outputs their values in base-10 so those who hold no knowledge of hex, or don't want to deal
+This is a C++ program(MSVC 2015) that takes MS_PARAM.BIN, SK_PARAM.BIN, PC_INIT.BIN, TB_LVUP.BIN, and ITEM.BIN and outputs their values in base-10 so those who hold no knowledge of hex, or don't want to deal
 with hex editing to edit the files. After editing the files as desired, run the program again, and it will recreate the .BIN files for you inside the directory they are needed in.
 
 How to use:
@@ -38,16 +38,15 @@ How the files are detailed between several .txt files provided with this program
 	lvlup.txt
 	pcinit.txt
 
-Woog's data files included:
+Woog's data files included(modified):
 	enemycompare.txt
 	eskills.txt
-	items.txt
-	nme list.txt
 
 What's next:
 
-I would like to add in the enemies and items to this program as well, to make everything as easy as humanly possible for any and everyone to edit this game. If anyone has any other ideas,
-please let me know, but I believe those 2 things are enough for most modders for this game.
+I would like to add in the enemies and map data to this program as well, to make everything as easy as humanly possible for any and everyone to edit this game. If anyone has any other ideas, please let me know.
+
+After all data can be properly parsed, the next goal is to create a GUI version for even easier modding.
 
 Other information:
 
