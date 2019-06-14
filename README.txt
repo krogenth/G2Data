@@ -9,7 +9,7 @@ with hex editing to edit the files. After editing the files as desired, run the 
 
 How to use:
 
-1.) Move the program to where Grandia II Anniversary Edition is installed, right where Grandia2.exe is(steamapps/common/Grandia II Anniversary Edition).
+1.) Copy the data/afs/xls_data folder to where the program is(needs xls_data inside afs inside data), or more the program to the game root directory, right where Grandia2.exe is(steamapps/common/Grandia II Anniversary Edition).
 2.) Back-up the data/afs/xls_data folder, in case anything gets messed up
 3.) Run the program to create the .txt files for editing
 4.) Edit the .txt files as you desire
