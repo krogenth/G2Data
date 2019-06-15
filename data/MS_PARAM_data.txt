@@ -8,15 +8,6 @@ OFF  ICON            Name  C T1  T2  STR   POW Range Cast1 Cast5   Rec   Ani ? ?
   6  2          Howlslash 14  6  7   100   225   300   240    40 12000     6 0 1 1500    0  200   1  10   0   0   0   0   0   0    0  160   80  120  200  320   25 Attack with sharp wind blades           
   7  2           Howlnado 45  6  6   320   225     0   360    60 13000     7 0 1 1000    0    0   1  10   8  30   0   0   0   0   11  320  160  240  400  640   25 Tornado attack that engulfs all enemies 
   8  2             Runner  3  4  3     0     0     0   120    20 11000     8 0 0    0    0    0   0   0   0   0   0   0   0   1    0   60   30   45   75  120    0 Boosts movement with a tailwind         
-  0  0                     0  0  0     0     0     0     0     0     0     0 0 0    0    0    0   0   0   0   0   0   0   0   0    0    0    0    0    0    0    0                                         
-  1  1              Burn!  6  6  4    40   250     0   180    30 12000     1 0 0    0    0   80   0  10   0   0   0   0   0   0    0  120   60   90  150  240   25 Attack enemy with fireballs             
-  2  1          Burnflame 16  6  5    70   250   600   240    40 12000     2 0 0    0    0   50   0  10   0   0   0   0   0   0    0  160   80  120  200  320   25 Attack with a huge pillar of fire       
-  3  1         Burnstrike 20  6  4   240   250     0   270    20 13000     3 0 1    0    0  120   0  10   0   0   0   0   0   0    0  240  120  180  300  480   25 Attack enemy with countless firebirds   
-  4  1         Hellburner 42  6  6   320   250     0   360    60 13000     4 0 1    0    0  100   0  10   0   0   0   0   0   0    0  320  160  240  400  640   25 Burn up enemy with hellfire             
-  5  2               Howl  9  6  5     0   225   600   180    30 12000     5 0 0 1000    0  100   1  10   0   0   0   0   0   0    0  120   60   90  150  240   25 Attack with tornado energy              
-  6  2          Howlslash 14  6  7   100   225   300   240    40 12000     6 0 1 1500    0  200   1  10   0   0   0   0   0   0    0  160   80  120  200  320   25 Attack with sharp wind blades           
-  7  2           Howlnado 45  6  6   320   225     0   360    60 13000     7 0 1 1000    0    0   1  10   8  30   0   0   0   0   11  320  160  240  400  640   25 Tornado attack that engulfs all enemies 
-  8  2             Runner  3  4  3     0     0     0   120    20 11000     8 0 0    0    0    0   0   0   0   0   0   0   0   1    0   60   30   45   75  120    0 Boosts movement with a tailwind         
   9  2              Shhh! 10  7  5     0     0   400   150    25 11000     9 0 0    0    0    0   0   0  32  70   0   0   0   0    0   60   30   45   75  120    0 Blocks magic with a vacuum              
  10  6             Snooze  5  7  6     0     0     0   165    15 11000    10 0 0    0    0    0   0   0   2  70   0   0   0   0    0   60   30   45   75  120    0 Puts enemies to sleep with bubbles      
  11  6               Heal  6  1  1     0   400     0   165    15 11000    11 0 0    0    0    0   0   0   0   0   0   0   0   0    0  120   60   90  150  240   50 Restores a little HP                    

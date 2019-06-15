@@ -1,5 +1,5 @@
 
-				                                                         *MP     SP    T2?T1        STR    AD                        Range  Cast  Rec   MG     IP    IPC    KB    EL Elm ST %C AT DF  AC MV SP
+				                                                         *MP     SP    ?  T1  STR   POW    AD    T2 ?   DIS   ACC    Range  Cast  Rec   MG ?   IP    IPC    KB    EL Elm ST %C AT DF  AC MV SP
 MOTTLED SPIDER 'ATTACK'		20 00 20 00  20 00 20 00  20 00 20 00  20 00 36 F0  37 F0 00 00  00 00 01 05  32 00 73 00  32 00 04 01  14 00 64 00  00 00 FA 00  0F 27 00 00  00 00 00 00  32 00 00 00  00 00 00 00  00 00 00 00  
 MOTTLED SPIDER 'WEB TRAP'	20 00 20 00  20 00 20 00  20 00 32 F2  AE 00 EB 00  E0 00 00 00  0C 00 04 05  32 00 78 00  64 00 04 00  00 00 00 00  00 00 50 00  E0 2E 00 00  DC 05 B8 0B  00 00 00 00  00 00 00 00  00 FF 00 00 
 DODO 'ATTACK'			20 00 20 00  20 00 20 00  20 00 20 00  20 00 36 F0  37 F0 00 00  00 00 01 05  32 00 82 00  1E 00 04 01  0A 00 6E 00  00 00 3C 00  0F 27 00 00  00 00 00 00  78 00 04 07  00 00 00 00  00 00 00 00
@@ -281,7 +281,20 @@ ZERA VALMAR 'Breath of God'	20 00 20 00  20 00 20 00  20 00 d3 f1  80 00 e1 f4  
 * - Start of move data(excluding name)
 MP - MP cost of move
 SP - SP cost of move
-T2? - Target Type(?)(Really unsure about this)
+?
+T1 - Target Effect
+	01(0x01) Restore HP
+	02(0x02) Restore MP
+	03(0x03) Restore SP
+	04(0x04) Ally(?) Buff/Debuff
+	05(0x05) Damage
+	06(0x06) Damage
+	07(0x07) Enemy(?) Buff/Debuff
+	08(0x08) Status Change
+STR - Strength of move
+POW - Power of move
+AD - Affects damage(Multipler???)
+T2 - Target Type
 	01(0x01) One Ally
 	02(0x02) Area Allies
 	03(0x03) All Allies
@@ -297,17 +310,9 @@ T2? - Target Type(?)(Really unsure about this)
 	13(0x0D) Area Around Self(Taint of Wind)
 	14(0x0E) Unknown
 	15(0x0F) Unknown
-T1 - Target Effect
-	01(0x01) Restore HP
-	02(0x02) Restore MP
-	03(0x03) Restore SP
-	04(0x04) Ally(?) Buff/Debuff
-	05(0x05) Damage
-	06(0x06) Damage
-	07(0x07) Enemy(?) Buff/Debuff
-	08(0x08) Status Change
-STR - Strength of move
-AD - Affects damage
+?
+DIS - Distance enemy can be to execute move
+ACC - Accuracy of move
 Range - Range of move
 Cast - IP duration needed to use move
 Rec - Where the caster lands on the IP bar after execution
