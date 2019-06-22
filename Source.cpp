@@ -296,9 +296,13 @@ void readMS() {
 
 		}
 
-		//reads and outputs element, element strength, status effects, % chance of status effect, attack, defense, act, mov
-		for (int counter = 0; counter < 8; counter++)
+		//reads and outputs element, element strength, status effects, % chance of status effect
+		for (int counter = 0; counter < 4; counter++)
 			output << std::setw(3) << std::to_string(buffer.at(count + 46 + counter)) << ' ';
+
+		//reads and outputs attack, defense, act, mov modifiers
+		for (int counter = 0; counter < 4; counter++)
+			output << std::setw(3) << std::to_string(static_cast<char>(buffer.at(count + 50 + counter))) << ' ';
 
 		//special effect
 		for (int counter = 1; counter >= 0; counter--) {
@@ -628,6 +632,7 @@ void writePC() {
 	assert(output);
 
 	uint32_t data32 = 0;
+	uint32_t temp = 0;
 	uint16_t offset = 0;
 	std::string data;
 	std::bitset<8> binary[80];
@@ -639,6 +644,7 @@ void writePC() {
 
 		while (std::getline(input, data)) {
 
+			//Character Starting EXP
 			while (data[offset] == ' ')
 				offset++;
 
@@ -650,12 +656,30 @@ void writePC() {
 
 			offset = data.find(' ', static_cast<size_t>(offset));
 
-			for (int count = 0; count < 76; count++) {
+			//Character Starting Gear
+			for (uint8_t count = 0; count < 0x06; count++) {
 
 				while (data[offset] == ' ')
 					offset++;
 
-				binary[4 + count] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				temp = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+
+				binary[(count * 2) + 4 + 0] = temp & 0x00FF;
+				binary[(count * 2) + 4 + 1] = (temp & 0xFF00) >> 8;
+
+				offset = data.find(' ', static_cast<size_t>(offset));
+
+
+				temp = 0;
+			}
+
+			//Some other junk I do not know what it does, besides a couple bytes
+			for (int count = 0; count < 64; count++) {
+
+				while (data[offset] == ' ')
+					offset++;
+
+				binary[16 + count] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
 				offset = data.find(' ', static_cast<size_t>(offset));
 
 			}
@@ -688,7 +712,8 @@ void readPC() {
 
 	input.close();
 
-	unsigned _int32 data;
+	int32_t data = 0;
+	int32_t temp = 0;
 	std::bitset<sizeof(unsigned char) * CHAR_BIT> binary;
 
 	for (int count = 0; count < buffer.size() - 1; count += 80) {
@@ -706,10 +731,23 @@ void readPC() {
 
 		output << std::setw(4) << data << ' ';
 
-		//reads and outputs mostly data I don't know the purpose of(if anyone figures this shit out, let me know)
-		for (int counter = 0; counter < 76; counter++) {
+		//Starting Gear for Character
+		for (uint8_t counter = 0; counter < 6; counter++) {
+			for (int8_t counting = 1; counting >= 0; counting--) {
+				binary = (buffer.at(count + (counter * 2) + counting + 4));
+				temp = temp << 8;
+				temp += binary.to_ulong();
+			}
 
-			binary = (buffer.at(count + counter + 4));
+			output << std::setw(3) << std::to_string(static_cast<short>(temp)) << ' ';
+			temp = 0;
+
+		}
+
+		//reads and outputs mostly data I don't know the purpose of(if anyone figures this shit out, let me know)
+		for (int counter = 0; counter < 64; counter++) {
+
+			binary = (buffer.at(count + counter + 16));
 			output << std::setw(3) << binary.to_ulong() << ' ';
 
 		}
