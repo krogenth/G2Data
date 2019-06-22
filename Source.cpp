@@ -12,28 +12,37 @@ void writeMS();
 void readMS();
 void writeSK();
 void readSK();
-void writeTB();
-void readTB();
 void writePC();
 void readPC();
 void writeIT();
 void readIT();
 
+void writeLVL();
+void readLVL();
+void writeMAG();
+void readMAG();
+void writeSHO();
+void readSHO();
+void writeSKI();
+void readSKI();
+void writeSPC();
+void readSPC();
+
 int main() {
 
-	std::wstring files[5] = { L"MS_PARAM", L"SK_PARAM", L"TB_LVUP", L"PC_INIT", L"ITEM" };
+	std::wstring files[9] = { L"MS_PARAM", L"SK_PARAM", L"PC_INIT", L"ITEM", L"TB_LVUP", L"TB_MAGIC", L"TB_SHOP", L"TB_SKILL", L"TB_SPCL" };
 	std::wstring test, test2;
-	unsigned _int16 fileFlags = 0;
+	uint32_t fileFlags = 0;
 
-	for (int count = 0; count < 5; count++) {
+	for (int count = 0; count < 9; count++) {
 
 		test = L"data/afs/xls_data/" + files[count] + L".txt";
 		test2 = L"data/afs/xls_data/" + files[count] + L".BIN";
-		if (GetFileAttributesW(test2.c_str()) != INVALID_FILE_ATTRIBUTES)
-				fileFlags += pow(2, (count * 2) + 1);
 
 		if (GetFileAttributesW(test.c_str()) != INVALID_FILE_ATTRIBUTES)
 			fileFlags += pow(2, (count * 2));
+		else if (GetFileAttributesW(test2.c_str()) != INVALID_FILE_ATTRIBUTES)
+			fileFlags += pow(2, (count * 2) + 1);
 
 	}
 
@@ -47,20 +56,40 @@ int main() {
 	else if ((fileFlags & 0x08) >> 3)
 		readSK();
 
-	if ((fileFlags & 0x10) >> 4)
-		writeTB();
-	else if ((fileFlags & 0x20) >> 5)
-		readTB();
-
-	if ((fileFlags & 0x40) >> 6)
+	if ((fileFlags & 0x40) >> 4)
 		writePC();
-	else if ((fileFlags & 0x80) >> 7)
+	else if ((fileFlags & 0x80) >> 5)
 		readPC();
 
-	if ((fileFlags & 0x100) >> 8)
+	if ((fileFlags & 0x100) >> 6)
 		writeIT();
-	else if ((fileFlags & 0x200) >> 9)
+	else if ((fileFlags & 0x200) >> 7)
 		readIT();
+
+	if ((fileFlags & 0x10) >> 8)
+		writeLVL();
+	else if ((fileFlags & 0x20) >> 9)
+		readLVL();
+
+	if ((fileFlags & 0x10) >> 10)
+		writeMAG();
+	else if ((fileFlags & 0x20) >> 11)
+		readMAG();
+
+	if ((fileFlags & 0x10) >> 12)
+		writeSHO();
+	else if ((fileFlags & 0x20) >> 13)
+		readSHO();
+
+	if ((fileFlags & 0x10) >> 14)
+		writeSKI();
+	else if ((fileFlags & 0x20) >> 15)
+		readSKI();
+
+	if ((fileFlags & 0x10) >> 16)
+		writeSPC();
+	else if ((fileFlags & 0x20) >> 17)
+		readSPC();
 
 	return 0;
 
@@ -511,7 +540,7 @@ void readSK() {
 
 }
 
-void writeTB() {
+void writeLVL() {
 
 	uint8_t offset = 0;
 	uint16_t data16 = 0;
@@ -569,7 +598,7 @@ void writeTB() {
 
 }
 
-void readTB() {
+void readLVL() {
 
 	// TB_LVUP each entry is 24 bytes long
 	std::ifstream input("data/afs/xls_data/TB_LVUP.BIN", std::ios::binary);
@@ -1254,5 +1283,53 @@ void readIT() {
 	}
 
 	output.close();
+
+}
+
+void writeMAG() {
+
+
+
+}
+
+void readMAG() {
+
+
+
+}
+
+void writeSHO() {
+
+
+
+}
+
+void readSHO() {
+
+
+
+}
+
+void writeSKI() {
+
+
+
+}
+
+void readSKI() {
+
+
+
+}
+
+void writeSPC() {
+
+
+
+}
+
+void readSPC() {
+
+
 
 }
