@@ -24,3 +24,17 @@
 1 byte rSP - SP gained from criital hits
 1 byte hSP - SP gained from getting damaged
 1 byte EV  - Evasion rate
+
+Ryudo
+Elena
+Millenia
+Roan
+Tio
+Mareg
+King Roan
+Ryudo
+Ryudo
+Ryudo
+Ryudo
+Ryudo
+Ryudo
