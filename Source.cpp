@@ -631,7 +631,6 @@ void writePC() {
 	fopen_s(&output, "data/afs/xls_data/PC_INIT.BIN", "w+b");
 	assert(output);
 
-	uint32_t data32 = 0;
 	uint32_t temp = 0;
 	uint16_t offset = 0;
 	std::string data;
@@ -648,11 +647,11 @@ void writePC() {
 			while (data[offset] == ' ')
 				offset++;
 
-			data32 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
-			binary[0] = data32 & 0x000000FF;
-			binary[1] = (data32 & 0x0000FF00) >> 8;
-			binary[2] = (data32 & 0x00FF0000) >> 16;
-			binary[3] = (data32 & 0xFF000000) >> 24;
+			temp = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+			binary[0] = temp & 0x000000FF;
+			binary[1] = (temp & 0x0000FF00) >> 8;
+			binary[2] = (temp & 0x00FF0000) >> 16;
+			binary[3] = (temp & 0xFF000000) >> 24;
 
 			offset = data.find(' ', static_cast<size_t>(offset));
 
@@ -671,15 +670,48 @@ void writePC() {
 
 
 				temp = 0;
+
 			}
 
-			//Some other junk I do not know what it does, besides a couple bytes
-			for (int count = 0; count < 64; count++) {
+			//Unknown 4 byte data
+			while (data[offset] == ' ')
+				offset++;
+
+			temp = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+
+			binary[16 + 0] = temp & 0x000000FF;
+			binary[16 + 1] = (temp & 0x0000FF00) >> 8;
+			binary[16 + 2] = (temp & 0x00FF0000) >> 16;
+			binary[16 + 3] = (temp & 0xFF000000) >> 24;
+
+			offset = data.find(' ', static_cast<size_t>(offset));
+			temp = 0;
+
+			//Max HP(?), Max MP(?), Max SP(?), Max STR(?), Max VIT(?), Max AGI(?), Max SPD(?), Max MAG(?), Max MEN(?), IPS, IPCS
+			for (uint8_t count = 0; count < 0x0B; count++) {
 
 				while (data[offset] == ' ')
 					offset++;
 
-				binary[16 + count] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				temp = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+
+				binary[(count * 2) + 20 + 0] = temp & 0x00FF;
+				binary[(count * 2) + 20 + 1] = (temp & 0xFF00) >> 8;
+
+				offset = data.find(' ', static_cast<size_t>(offset));
+
+
+				temp = 0;
+
+			}
+
+			//Some other junk I do not know what it does, besides a couple bytes
+			for (int count = 0; count < 38; count++) {
+
+				while (data[offset] == ' ')
+					offset++;
+
+				binary[42 + count] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
 				offset = data.find(' ', static_cast<size_t>(offset));
 
 			}
@@ -744,10 +776,36 @@ void readPC() {
 
 		}
 
-		//reads and outputs mostly data I don't know the purpose of(if anyone figures this shit out, let me know)
-		for (int counter = 0; counter < 64; counter++) {
+		//Unknown 4 byte data
+		for (uint8_t counter = 0; counter < 1; counter++) {
+			for (int8_t counting = 3; counting >= 0; counting--) {
+				binary = (buffer.at(count + (counter * 2) + counting + 16));
+				temp = temp << 8;
+				temp += binary.to_ulong();
+			}
 
-			binary = (buffer.at(count + counter + 16));
+			output << std::setw(3) << std::to_string(static_cast<short>(temp)) << ' ';
+			temp = 0;
+
+		}
+
+		//Max HP(?), Max MP(?), Max SP(?), Max STR(?), Max VIT(?), Max AGI(?), Max SPD(?), Max MAG(?), Max MEN(?), IPS, IPCS
+		for (uint8_t counter = 0; counter < 11; counter++) {
+			for (int8_t counting = 1; counting >= 0; counting--) {
+				binary = (buffer.at(count + (counter * 2) + counting + 20));
+				temp = temp << 8;
+				temp += binary.to_ulong();
+			}
+
+			output << std::setw(3) << std::to_string(static_cast<short>(temp)) << ' ';
+			temp = 0;
+
+		}
+
+		//reads and outputs mostly data I don't know the purpose of(if anyone figures this shit out, let me know)
+		for (int counter = 0; counter < 38; counter++) {
+
+			binary = (buffer.at(count + counter + 42));
 			output << std::setw(3) << binary.to_ulong() << ' ';
 
 		}
