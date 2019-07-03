@@ -4,8 +4,8 @@ Grandia 2 Data reading/writing
 
 What this does:
 
-This is a C++ program(MSVC 2015) that takes MS_PARAM.BIN, SK_PARAM.BIN, PC_INIT.BIN, TB_LVUP.BIN, and ITEM.BIN and outputs their values in base-10 so those who hold no knowledge of hex, or don't want to deal
-with hex editing to edit the files. After editing the files as desired, run the program again, and it will recreate the .BIN files for you inside the directory they are needed in.
+This is a C++ program(MSVC 2015) that takes MS_PARAM.BIN, SK_PARAM.BIN, PC_INIT.BIN, ITEM.BIN, TB_LVUP.BIN, TB_MAGIC.BIN, TB_SKILL.BIN, and TB_SPCL.BIN, and outputs their values in base-10 so those who hold no knowledge of hex, or don't want to deal
+with hex editing to edit the files, can edit the files. After editing the files as desired, run the program again, and it will recreate the .BIN files for you inside the directory they are needed in.
 
 How to use:
 
