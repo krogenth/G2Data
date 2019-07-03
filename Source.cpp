@@ -17,6 +17,7 @@ void readPC();
 void writeIT();
 void readIT();
 
+//TB_ files
 void writeLVL();
 void readLVL();
 void writeMAG();
@@ -56,39 +57,39 @@ int main() {
 	else if ((fileFlags & 0x08) >> 3)
 		readSK();
 
-	if ((fileFlags & 0x40) >> 4)
+	if ((fileFlags & 0x10) >> 4)
 		writePC();
-	else if ((fileFlags & 0x80) >> 5)
+	else if ((fileFlags & 0x20) >> 5)
 		readPC();
 
-	if ((fileFlags & 0x100) >> 6)
+	if ((fileFlags & 0x40) >> 6)
 		writeIT();
-	else if ((fileFlags & 0x200) >> 7)
+	else if ((fileFlags & 0x80) >> 7)
 		readIT();
 
-	if ((fileFlags & 0x10) >> 8)
+	if ((fileFlags & 0x100) >> 8)
 		writeLVL();
-	else if ((fileFlags & 0x20) >> 9)
+	else if ((fileFlags & 0x200) >> 9)
 		readLVL();
 
-	if ((fileFlags & 0x10) >> 10)
+	if ((fileFlags & 0x400) >> 10)
 		writeMAG();
-	else if ((fileFlags & 0x20) >> 11)
+	else if ((fileFlags & 0x800) >> 11)
 		readMAG();
 
-	if ((fileFlags & 0x10) >> 12)
+	if ((fileFlags & 0x1000) >> 12)
 		writeSHO();
-	else if ((fileFlags & 0x20) >> 13)
+	else if ((fileFlags & 0x2000) >> 13)
 		readSHO();
 
-	if ((fileFlags & 0x10) >> 14)
+	if ((fileFlags & 0x4000) >> 14)
 		writeSKI();
-	else if ((fileFlags & 0x20) >> 15)
+	else if ((fileFlags & 0x8000) >> 15)
 		readSKI();
 
-	if ((fileFlags & 0x10) >> 16)
+	if ((fileFlags & 0x10000) >> 16)
 		writeSPC();
-	else if ((fileFlags & 0x20) >> 17)
+	else if ((fileFlags & 0x20000) >> 17)
 		readSPC();
 
 	return 0;
@@ -531,119 +532,6 @@ void readSK() {
 		//reads and outputs the description of the skill
 		for (int counter = 0; counter < 40; counter++)
 			output << buffer.at(count + counter + 64);
-
-		output << '\n';
-
-	}
-
-	output.close();
-
-}
-
-void writeLVL() {
-
-	uint8_t offset = 0;
-	uint16_t data16 = 0;
-	uint32_t data32 = 0;
-	std::string data;
-	std::bitset<8> binary[24];
-
-	std::ifstream input("data/afs/xls_data/TB_LVUP.txt");
-	FILE* output;
-	fopen_s(&output, "data/afs/xls_data/TB_LVUP.BIN", "w+b");
-	assert(output);
-
-	input.clear();
-	input.seekg(0, std::ios::beg);
-
-	if (input.is_open()) {
-
-		while (std::getline(input, data)) {
-
-			while (data[offset] == ' ')
-				offset++;
-
-			data32 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
-			offset = data.find(' ', static_cast<size_t>(offset));
-			binary[0] = data32 & 0x000000FF;
-			binary[1] = (data32 & 0x0000FF00) >> 8;
-			binary[2] = (data32 & 0x00FF0000) >> 16;
-			binary[3] = (data32 & 0xFF000000) >> 24;
-
-			for (int count = 0; count < 10; count++) {
-
-				while (data[offset] == ' ')
-					offset++;
-
-				data16 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
-				offset = data.find(' ', static_cast<size_t>(offset));
-				binary[4 + (count * 2)] = data16 & 0x00FF;
-				binary[5 + (count * 2)] = (data16 & 0xFF00) >> 8;
-
-			}
-
-			for (int count = 0; count < 24; count++)
-				fputc(binary[count].to_ulong(), output);
-
-			offset = 0;
-
-		}
-
-	}
-	else
-		return;
-
-	input.close();
-	fclose(output);
-
-}
-
-void readLVL() {
-
-	// TB_LVUP each entry is 24 bytes long
-	std::ifstream input("data/afs/xls_data/TB_LVUP.BIN", std::ios::binary);
-	std::ofstream output("data/afs/xls_data/TB_LVUP.txt");
-
-	std::vector<unsigned char> buffer((
-		std::istreambuf_iterator<char>(input)),
-		(std::istreambuf_iterator<char>()));
-
-	input.close();
-
-	unsigned _int32 data;
-	std::bitset<sizeof(unsigned char) * CHAR_BIT> binary;
-
-	for (int count = 0; count < buffer.size() - 1; count += 24) {
-
-		data = 0;
-
-		//reads and outputs EXP for each level up
-		for (int counter = 3; counter >= 0; counter--) {
-
-			binary = (buffer.at(count + counter));
-			data = data << 8;
-			data += binary.to_ulong();
-
-		}
-
-		output << std::setw(7) << data << ' ';
-		data = 0;
-
-		//reads and outputs HP, MP, SP, STR, VIT, MAG, MEN, ACT, MOV, gained from each level up, in that order
-		for (int counter = 0; counter < 10; counter++) {
-
-			for (int counting = 1; counting >= 0; counting--) {
-
-				binary = (buffer.at(count + (counter * 2) + counting + 4));
-				data = data << 8;
-				data += binary.to_ulong();
-
-			}
-
-			output << std::setw(3) << data << ' ';
-			data = 0;
-
-		}
 
 		output << '\n';
 
@@ -1286,18 +1174,218 @@ void readIT() {
 
 }
 
+void writeLVL() {
+
+	uint8_t offset = 0;
+	uint16_t data16 = 0;
+	uint32_t data32 = 0;
+	std::string data;
+	std::bitset<8> binary[24];
+
+	std::ifstream input("data/afs/xls_data/TB_LVUP.txt");
+	FILE* output;
+	fopen_s(&output, "data/afs/xls_data/TB_LVUP.BIN", "w+b");
+	assert(output);
+
+	input.clear();
+	input.seekg(0, std::ios::beg);
+
+	if (input.is_open()) {
+
+		while (std::getline(input, data)) {
+
+			while (data[offset] == ' ')
+				offset++;
+
+			data32 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+			offset = data.find(' ', static_cast<size_t>(offset));
+			binary[0] = data32 & 0x000000FF;
+			binary[1] = (data32 & 0x0000FF00) >> 8;
+			binary[2] = (data32 & 0x00FF0000) >> 16;
+			binary[3] = (data32 & 0xFF000000) >> 24;
+
+			for (int count = 0; count < 10; count++) {
+
+				while (data[offset] == ' ')
+					offset++;
+
+				data16 = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
+				binary[4 + (count * 2)] = data16 & 0x00FF;
+				binary[5 + (count * 2)] = (data16 & 0xFF00) >> 8;
+
+			}
+
+			for (int count = 0; count < 24; count++)
+				fputc(binary[count].to_ulong(), output);
+
+			offset = 0;
+
+		}
+
+	}
+	else
+		return;
+
+	input.close();
+	fclose(output);
+
+}
+
+void readLVL() {
+
+	// TB_LVUP each entry is 24 bytes long
+	std::ifstream input("data/afs/xls_data/TB_LVUP.BIN", std::ios::binary);
+	std::ofstream output("data/afs/xls_data/TB_LVUP.txt");
+
+	std::vector<unsigned char> buffer((
+		std::istreambuf_iterator<char>(input)),
+		(std::istreambuf_iterator<char>()));
+
+	input.close();
+
+	uint32_t data;
+	std::bitset<sizeof(unsigned char) * CHAR_BIT> binary;
+
+	for (int count = 0; count < buffer.size() - 1; count += 24) {
+
+		data = 0;
+
+		//reads and outputs EXP for each level up
+		for (int counter = 3; counter >= 0; counter--) {
+
+			binary = (buffer.at(count + counter));
+			data = data << 8;
+			data += binary.to_ulong();
+
+		}
+
+		output << std::setw(7) << data << ' ';
+		data = 0;
+
+		//reads and outputs HP, MP, SP, STR, VIT, MAG, MEN, ACT, MOV, gained from each level up, in that order
+		for (int counter = 0; counter < 10; counter++) {
+
+			for (int counting = 1; counting >= 0; counting--) {
+
+				binary = (buffer.at(count + (counter * 2) + counting + 4));
+				data = data << 8;
+				data += binary.to_ulong();
+
+			}
+
+			output << std::setw(3) << data << ' ';
+			data = 0;
+
+		}
+
+		output << '\n';
+
+	}
+
+	output.close();
+
+}
+
+/*
+TB_MAGIC.BIN(72 byte entries)
+1 byte Attack ID
+1 byte Attack Starting Level
+1 byte Mana Egg Level Requirement
+1 byte Unknown
+*/
 void writeMAG() {
 
+	uint16_t offset = 0;
+	std::string data;
+	std::bitset<8> binary[72];
 
+	std::ifstream input("data/afs/xls_data/TB_MAGIC.txt");
+	FILE* output;
+	fopen_s(&output, "data/afs/xls_data/TB_MAGIC.BIN", "w+b");
+	assert(output);
+
+	input.clear();
+	input.seekg(0, std::ios::beg);
+
+	if (input.is_open()) {
+
+		while (std::getline(input, data)) {
+
+			for (int count = 0; count < 72; count++) {
+
+				while (data[offset] == ' ')
+					offset++;
+
+				binary[count] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
+
+			}
+
+			for (int count = 0; count < 72; count++)
+				fputc(binary[count].to_ulong(), output);
+
+			offset = 0;
+
+		}
+
+	}
+	else
+		return;
+
+	input.close();
+	fclose(output);
 
 }
 
 void readMAG() {
 
+	std::ifstream input("data/afs/xls_data/TB_MAGIC.BIN", std::ios::binary);
+	std::ofstream output("data/afs/xls_data/TB_MAGIC.txt");
 
+	std::vector<unsigned char> buffer((
+		std::istreambuf_iterator<char>(input)),
+		(std::istreambuf_iterator<char>()));
+
+	input.close();
+
+	for (int count = 0; count < buffer.size() - 1; count += 72) {
+
+		for (int counter = 0; counter < 18; counter++) {
+
+			for (int counting = 0; counting < 4; counting++)
+				output << std::setw(3) << std::to_string(buffer[count + (counter * 4) + counting]) << ' ';
+
+		}
+
+		output << '\n';
+
+	}
+
+	output.close();
 
 }
 
+/*
+TB_SHOP.BIN(164 byte entries)
+2 byte Map Name(by folder name)
+2 byte Number of catagories(?)
+8 byte "weapons"
+24 byte Item Listing
+2 byte Item "ID"(offset by 0x0008)
+8 byte "  armor"
+24 byte Item Listing
+2 byte Item "ID"(offset by 0x0008)
+8 byte "jewelry"
+24 byte Item Listing
+2 byte Item "ID"(offset by 0x0008)
+8 byte "   items"
+24 byte Item Listing
+2 byte Item "ID"(offset by 0x0008)
+8 byte "regional"
+24 byte Item Listing
+2 byte Item "ID"(offset by 0x0008)
+*/
 void writeSHO() {
 
 
@@ -1310,26 +1398,191 @@ void readSHO() {
 
 }
 
+/*
+TB_SKILL.BIN(24 byte entries)
+1 byte Skill Offset
+1 byte Starting Level
+1 byte Skillbook Level Requirement
+1 byte Unknown
+*/
 void writeSKI() {
 
+	uint8_t offset = 0;
+	std::string data;
+	std::bitset<8> binary[24];
 
+	std::ifstream input("data/afs/xls_data/TB_SKILL.txt");
+	FILE* output;
+	fopen_s(&output, "data/afs/xls_data/TB_SKILL.BIN", "w+b");
+	assert(output);
+
+	input.clear();
+	input.seekg(0, std::ios::beg);
+
+	if (input.is_open()) {
+
+		while (std::getline(input, data)) {
+
+			for (int count = 0; count < 24; count++) {
+
+				while (data[offset] == ' ')
+					offset++;
+
+				binary[count] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
+
+			}
+
+			for (int count = 0; count < 24; count++)
+				fputc(binary[count].to_ulong(), output);
+
+			offset = 0;
+
+		}
+
+	}
+	else
+		return;
+
+	input.close();
+	fclose(output);
 
 }
 
 void readSKI() {
 
+	std::ifstream input("data/afs/xls_data/TB_SKILL.BIN", std::ios::binary);
+	std::ofstream output("data/afs/xls_data/TB_SKILL.txt");
 
+	std::vector<unsigned char> buffer((
+		std::istreambuf_iterator<char>(input)),
+		(std::istreambuf_iterator<char>()));
+
+	input.close();
+
+	for (int count = 0; count < buffer.size() - 1; count += 24) {
+
+		for (int counter = 0; counter < 6; counter++) {
+
+			for (int counting = 0; counting < 4; counting++)
+				output << std::setw(3) << std::to_string(buffer[count + (counter * 4) + counting]) << ' ';
+
+		}
+
+		output << '\n';
+
+	}
+
+	output.close();
 
 }
 
+/*
+TB_SPCL.BIN(24 byte entries)
+1 byte Attack ID
+1 byte Attack Starting Level
+2 byte Story Flag Requirement
+*/
 void writeSPC() {
 
+	uint8_t offset = 0;
+	uint16_t temp = 0;
+	std::string data;
+	std::bitset<8> binary[24];
 
+	std::ifstream input("data/afs/xls_data/TB_SPCL.txt");
+	FILE* output;
+	fopen_s(&output, "data/afs/xls_data/TB_SPCL.BIN", "w+b");
+	assert(output);
+
+	input.clear();
+	input.seekg(0, std::ios::beg);
+
+	if (input.is_open()) {
+
+		while (std::getline(input, data)) {
+
+			for (int count = 0; count < 6; count++) {
+
+				while (data[offset] == ' ')
+					offset++;
+
+				binary[(count * 4)] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
+
+				while (data[offset] == ' ')
+					offset++;
+
+				binary[(count * 4) + 1] = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
+
+				while (data[offset] == ' ')
+					offset++;
+
+				temp = std::stoi(data.substr(static_cast<size_t>(offset), data.find(' ', static_cast<size_t>(offset)) - offset));
+				offset = data.find(' ', static_cast<size_t>(offset));
+
+				for (int8_t counter = 0; counter < 2; counter++)
+				{
+					binary[(count * 4) + counter + 2] = temp & 0xFF;
+					temp = temp >> 8;
+
+				}
+
+			}
+
+			for (int count = 0; count < 24; count++)
+				fputc(binary[count].to_ulong(), output);
+
+			offset = 0;
+
+		}
+
+	}
+	else
+		return;
+
+	input.close();
+	fclose(output);
 
 }
 
 void readSPC() {
 
+	std::ifstream input("data/afs/xls_data/TB_SPCL.BIN", std::ios::binary);
+	std::ofstream output("data/afs/xls_data/TB_SPCL.txt");
 
+	uint32_t temp = 0;
+	std::vector<unsigned char> buffer((
+		std::istreambuf_iterator<char>(input)),
+		(std::istreambuf_iterator<char>()));
+
+	std::bitset<sizeof(unsigned char) *CHAR_BIT> binary;
+
+	input.close();
+
+	for (int count = 0; count < buffer.size() - 1; count += 24) {
+
+		for (int counter = 0; counter < 6; counter++) {
+
+			for (int counting = 0; counting < 2; counting++)
+				output << std::setw(3) << std::to_string(buffer[count + (counter * 4) + counting]) << ' ';
+
+			for (int8_t counting = 1; counting >= 0; counting--) {
+				binary = buffer[count + (counter * 4) + counting + 2];
+				temp = temp << 8;
+				temp += binary.to_ulong();
+			}
+
+			output << std::setw(5) << std::to_string(static_cast<uint16_t>(temp)) << ' ';
+			temp = 0;
+
+		}
+
+		output << '\n';
+
+	}
+
+	output.close();
 
 }
