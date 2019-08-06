@@ -9,17 +9,24 @@ CODES			DETAILS
 	XX = 80, YY ZZ	Create overword textbox, YY = length of textbox, ZZ = height of textbox
 0x08 XX YY ZZ	XX = ???, YY = ???(noticed either 0x21 or 0x41), ZZ = ???(only been 0x01)
 0x11 XX []		adds item to inventory, XX = ???
+0x18 00 XX		changes character protrait
 
 FONT FILE
 xls_data/gr2us.dat	Follows unicode dictionary starting at 0x20(space)
 
 TB_SPCL.BIN(24 byte entries)
-	1 byte Attack ID
+	1 byte Attack Offset
 	1 byte Attack Starting Level
 	2 byte Story Flag Requirement
 	
+TB_SKILL.BIN(24 byte entries)
+	1 byte Skill Offset
+	1 byte Starting Level
+	1 byte Skillbook Level Requirement
+	1 byte Unknown
+
 TB_MAGIC.BIN(72 byte entries)
-	1 byte Attack ID
+	1 byte Attack Offset
 	1 byte Attack Starting Level
 	1 byte Mana Egg Level Requirement
 	1 byte Unknown
