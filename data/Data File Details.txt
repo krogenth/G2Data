@@ -9,7 +9,7 @@ CODES			DETAILS
 	XX = 80, YY ZZ	Create overword textbox, YY = length of textbox, ZZ = height of textbox
 0x08 XX YY ZZ	XX = ???, YY = ???(noticed either 0x21 or 0x41), ZZ = ???(only been 0x01)
 0x11 XX []		adds item to inventory, XX = ???
-0x18 00 XX		changes character protrait
+0x18 00 XX		changes character protrait, XX = character protrait offset
 
 FONT FILE
 xls_data/gr2us.dat	Follows unicode dictionary starting at 0x20(space)
