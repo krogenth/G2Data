@@ -2,8 +2,13 @@
 7a = equipment
 7d = item
 
-                TY TY LV     HP           MP    SP     VIT   AGI    SPD   MEN    STA   IPS    IPCS  EV     FI WI EA LT  BZ ST                                                            XP           SKILLCOINS   MAGICCOINS   GP           ITEM1 ITEM2  %1 %2        AI Start           AI start            AI start           AI start                                                                                                                                    
+mottled spider ID = 15
+
+                TY TY LV     HP           MP    SP     VIT   AGI    SPD   MEN    STA   IPS    IPCS  EV EVM FI WI EA LT  BZ ST RKB?   TREC  TDMG         THEAL  SIZE            NO        XP           SKILLCOINS   MAGICCOINS   GP           ITEM1 ITEM2  %1 %2        AI Start           AI start            AI start           AI start            AI Start           ?? ??
 MOTTLED SPIDER	02 02 0A 00  FA 00 00 00  00 00 3C 00  64 00 32 00  3B 00 3C 00  0D 01 14 00  32 00 00 00  00 00 00 00  00 00 05 00  0C 03 2C 01  00 00 F4 01  5A 00 C8 00  00 00 00 00  08 00 00 00  0F 00 00 00  05 00 00 00  02 00 00 00  6A 00 F9 00  14 05 00 00  01 46 1E 00  00 00 0D 5A  0A 00 00 00  00 00 00 00  00 00 0F 64  00 00 00 00  00 00 00 00  00 00 00 00
+
+FENNY BIRD      01 01 23 00  22 06 00 00  00 00 00 00  BA 00 6C 00  64 00 98 00  C0 00 14 00  32 00 19 00  08 FA 00 00  F8 00 00 00  1C 02 F0 00  00 00 F4 01  64 00 C8 00  00 00 00 00  31 00 00 00  0E 00 00 00  4C 00 00 00  1A 00 00 00  E4 00 42 00  05 01 00 00  01 64 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00
+
 DODO		01 01 0A 00  E6 00 00 00  00 00 00 00  6E 00 37 00  62 00 6E 00  C0 00 14 00  32 00 00 00  00 00 00 00  00 00 00 00  48 03 0E 01  00 00 F4 01  64 00 C8 00  00 00 00 00  06 00 00 00  0A 00 00 00  08 00 00 00  07 00 00 00  6A 00 72 00  14 05 00 00  01 64 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00
 GARGOYLE	06 06 0A 00  7C 01 00 00  50 00 00 00  73 00 2D 00  45 00 87 00  FA 00 14 00  32 00 00 00  00 00 00 00  00 1E 05 00  E0 01 F0 00  00 00 F4 01  5A 00 C8 00  00 00 00 00  12 00 00 00  36 00 00 00  15 00 00 00  0C 00 00 00  DA 00 3C 01  14 01 00 00  01 3C 1E 0A  00 00 0A 50  14 00 00 00  03 28 23 19  00 00 0F 64  00 00 00 00  00 00 00 00  00 00 00 00
 CRAG SNAKE	03 03 0B 00  18 01 00 00  00 00 00 00  7D 00 4C 00  63 00 35 00  C0 00 14 00  32 00 00 00  00 00 05 00  00 01 05 00  D0 02 C2 01  00 00 F4 01  64 00 C8 00  00 00 00 00  0C 00 00 00  18 00 00 00  14 00 00 00  1B 00 00 00  7E 00 00 03  14 05 00 00  01 64 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00
@@ -48,7 +53,7 @@ MELFICE		24 08 28 00  38 4a 00 00  48 03 b6 03  21 01 bb 00  c2 01 ac 00  60 00 
 SWORD		25 08 28 00  f8 2a 00 00  00 00 00 00  0b 02 4b 00  c2 01 64 00  60 00 0a 00  1e 00 00 00  fd fd fd fd  fd df 19 00  68 01 1c 02  00 00 f4 01  46 00 c8 00  53 01 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 32 01  00 64 00 00  01 64 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00
 REGENERATOR	26 08 28 00  c8 32 00 00  58 02 00 00  ae 00 8a 00  c2 01 cd 01  60 00 0a 00  1e 00 00 00  00 00 00 00  00 b8 19 00  f0 00 1c 02  00 00 f4 01  3c 00 c8 00  53 01 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 38 00  00 64 00 00  01 0a 14 28  0f 0f 00 28  0a 14 0f 0f  00 0a 00 28  1e 14 00 32  00 1e 00 14  00 00 00 00  00 00 00 00
 
-                TY TY LV     HP           MP    SP     VIT   AGI    SPD   MEN    STA   IPS    IPCS  EV     FI WI EA LT  BZ ST                                                            XP           SKILLCOINS   MAGICCOINS   GP           ITEM1 ITEM2  %1 %2        AI Start           AI start            AI start           AI start                                                                                                                                                                                                            
+                TY TY LV     HP           MP    SP     VIT   AGI    SPD   MEN    STA   IPS    IPCS  EV EVM FI WI EA LT  BZ ST RKB?   TREC  TDMG         THEAL  SIZE            NO        XP           SKILLCOINS   MAGICCOINS   GP           ITEM1 ITEM2  %1 %2        AI Start           AI start            AI start           AI start            AI Start           ?? ??
 GIGA MANTIS	02 02 22 00  b4 05 00 00  00 00 00 00  da 00 58 00  50 00 66 00  e6 00 14 00  32 00 00 00  00 00 fc 06  00 00 0a 00  e0 01 a4 01  00 00 f4 01  64 00 c8 00  00 00 00 00  2a 00 00 00  31 00 00 00  10 00 00 00  35 00 00 00  67 00 40 02  0f 05 00 00  01 64 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00
 FENNY BIRD	01 01 23 00  22 06 00 00  00 00 00 00  ba 00 6c 00  64 00 98 00  c0 00 14 00  32 00 19 00  08 fa 00 00  f8 00 00 00  1c 02 f0 00  00 00 f4 01  64 00 c8 00  00 00 00 00  31 00 00 00  0e 00 00 00  4c 00 00 00  1a 00 00 00  e4 00 42 00  05 01 00 00  01 64 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00
 DESERT DIVER	04 04 25 00  14 05 00 00  00 00 fa 00  ad 00 5a 00  3c 00 7f 00  0d 01 14 00  32 00 00 00  06 f8 0a 00  00 00 05 00  2c 01 d2 00  00 00 f4 01  46 00 c8 00  00 00 00 00  38 00 00 00  3a 00 00 00  2c 00 00 00  7e 00 00 00  86 00 dd 02  0a 02 00 00  01 46 05 19  00 00 03 3c  0f 19 00 00  00 00 00 00  00 00 0f 5a  00 0a 00 00  00 00 00 00  00 00 00 00
@@ -93,6 +98,7 @@ RIGHT HEAD	3b 08 37 00  60 6d 00 00  e0 01 a4 01  55 01 7b 00  1e 00 0f 01  20 0
 LEFT HEAD	3a 08 37 00  b8 88 00 00  e0 01 a4 01  46 01 a2 00  1e 00 f9 00  20 01 00 00  0f 00 00 00  00 00 00 00  00 f9 32 00  96 00 68 01  00 00 f4 01  3c 00 c8 00  55 01 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  01 00 0f 19  0a 32 00 0a  28 05 14 19  00 0a 19 1e  14 0f 00 0a  14 1e 0f 19  00 00 00 00  00 00 00 00
 ZERA VALMAR	3d 08 38 00  a0 8c 00 00  dc 05 00 00  ed 00 a8 00  28 00 9c 00  20 01 05 00  14 00 00 00  00 00 00 00  00 ff 1e 00  96 00 a4 01  00 00 f4 01  5a 00 c8 00  55 01 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  01 14 0f 19  28 00 08 05  0a 1e 0f 28  0a 28 19 05  0a 14 0f 1e  14 14 14 0a  00 00 00 00  00 00 00 00
 
+MILLENIA 00 02  13 05 30 00  D8 59 00 00  F7 00 C0 00  23 01 E0 00  68 00 9B 00  C0 00 0A 00  1E 00 00 00  00 00 00 00  00 E0 0A 00  39 03 36 01  E0 01 D2 00  3C 00 AA 00  00 01 00 00  00 00 00 00  B8 0B 00 00  00 00 00 00  00 00 00 00  00 00 69 01  00 64 00 00  01 32 0A 14  0A 0A 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00 
 
 
 
@@ -121,8 +127,9 @@ SPD - MOVE
 MEN - MENTAL
 STA - Stamina(Duration enemy can move before getting "tired out")
 IPS - IP Delay Stun(Duration Enemy IP does not move after damage)
-IPCS - IP Delay Cancel Stun(Duration Enemy IP does not move after being cancelled
-EV - EVADE
+IPCS - IP Delay Cancel Stun(Duration Enemy IP does not move after being cancelled)
+EV - EVASION
+EVM - EVASION WHILE MOVING
 FI,WI,EA,LT,BZ - ELEMENT RESIST
 ST - STATUS RESIST
 	001(0x01) Poison
@@ -133,6 +140,7 @@ ST - STATUS RESIST
 	032(0x20) Magic Block
 	064(0x40) Move Block
 	128(0x80) Death
+NO - Toggle ability to escape
 EXP - 
 SKILLCOINS -
 MAGICCOINS -

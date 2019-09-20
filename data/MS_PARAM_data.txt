@@ -154,11 +154,11 @@ OFF  ICON            Name  C T1  T2  STR   POW Range Cast1 Cast5   Rec   Ani ? ?
 	02(0x02) Restore MP
 	03(0x03) Restore SP
 	04(0x04) Ally(?) Buff/Debuff
-	05(0x05) Damage
-	06(0x06) Damage
+	05(0x05) Attack/Move(?) Damage
+	06(0x06) Magic(?) Damage
 	07(0x07) Enemy(?) Buff/Debuff
 	08(0x08) Status Change
-	15(0x0F) Unknown
+	15(0x0F) Special(Spellbinding Eye, Gravity, etc.)
 01 byte T2 - target type
 	01(0x01) One Ally
 	02(0x02) Area Allies

@@ -11,6 +11,76 @@ CODES			DETAILS
 0x11 XX []		adds item to inventory, XX = ???
 0x18 00 XX		changes character protrait, XX = character protrait offset
 
+0x0008	-	# Map Entry Locations 32 byte Entries
+0x000C	-	Map Entry Locations Offset
+0x0018	-	# Intances 30 Byte Entries
+0x001C	-	Instances Offset
+0x0028	-	# Movement Scirpts?
+0x002C	-	Movement Scripts Offset
+0x0038	-	# Enemy Groups Positions 104 Byte Entries
+0x003C	-	Enemy Groups Positions Offset
+0x0048	-	# Enemy Group Data 120 Byte Entries
+0x004C	-	Enemy Group Data Offset
+0x0078	-	Dialogue Byte Length
+0x007C	-	Dialogue Offset
+0x0080	-	# Unknown 12 Byte Entries
+0x0084	-	Unknown Entries Offset
+0x0088	-	# Unknown 16 Byte Entries
+0x008C	-	Unknown Entries Offset
+0x0090	-	# Unknown 8 Byte Entries
+0x0094	-	Unknown Entries Offset
+0x0098	-	# Icon 32 Byte Entries
+0x009C	-	Icon Entries Offset(overworld interactables)
+0x00A0	-	# Unknown Bytes
+0x00A4	-	Unknown Data
+0x00B8	-	# Unknown 18 Byte Entries
+0x00BC	-	Unknown Entries Offset
+0x00C0	-	# Unknown 128 Byte Entries
+0x00C4	-	Unknown Entries Offset
+
+INSTANCES
+	02 byte ID
+	02 byte Index
+	02 byte ???
+	02 byte Trans
+	04 byte X Position Float
+	04 byte Y Position Float
+	04 byte Z Position Float
+	04 byte X Angle Float
+	04 byte Y Angle Float
+	04 byte Z Angle Float
+	04 byte CX Float
+	04 byte CY Float
+	04 byte CZ Float
+	
+Enemy Groups(104 byte entries)
+	02 byte Index
+	02 byte ???
+	04 byte X position minimum
+	04 byte Z position minimum
+	04 byte X position maximum
+	04 byte Z position maximum
+	04 byte X Position
+	04 byte Y Position
+	04 byte Z Position
+	
+ENEMY DATA(120 byte)
+	02 byte Index
+	
+ICONS
+	01 byte ID
+	03 byte ???
+	04 byte X Position
+	04 byte Y Position
+	04 byte Z Position
+	08 byte ???
+	06 byte Item Offsets(2 byte)
+	02 byte Flag
+
+
+2000.mdt
+	ryudo script 0x2804
+
 FONT FILE
 xls_data/gr2us.dat	Follows unicode dictionary starting at 0x20(space)
 
@@ -53,6 +123,8 @@ PC_INIT.BIN(80 byte entries)
 	1 byte Damaged SP Recovery
 	1 byte Unknown
 	1 byte Evasion
+	1 byte Move Evasion
+	1 byte R_KB
 	32 byte Unknown
 	
 TB_SHOP.BIN(164 byte entries)
@@ -75,7 +147,9 @@ TB_SHOP.BIN(164 byte entries)
 		2 byte Item "ID"(offset by 0x0008)
 
 SAVE FILES
-Stats offset 0x10
+Stats offset 0x308(108 byte entries)
+	12 byte Name(Trailing 0's)
+	2 byte Level
 	4 byte Current EXP
 	4 byte EXP to Next Level
 	4 byte Current Max HP
@@ -83,4 +157,37 @@ Stats offset 0x10
 	2 byte Current Max MP
 	2 byte Current MP
 	2 byte Current Max SP
-	2 byte CUrrent SP
+	2 byte Current SP
+	2 byte STR
+	2 byte VIT
+	2 byte ACT
+	2 byte MOV
+	2 byte MAG
+	2 byte MEN
+	12 byte ???
+	2 byte Weapon
+	2 byte Armor
+	2 byte Headgear
+	2 byte Footwear
+	2 byte Accessory
+	2 byte Mana Egg
+	2 byte Skill Slots
+	30 byte ???
+	160 byte copy of relevant TB_SPCL.BIN data(including story flags)
+	
+ENEMY FILES
+	AI DATA
+		0x01 Entry AI
+		0x06 HP Threshold? AI
+		
+	d18_0	-	Mottled Spider
+		0x0000	-	Required to properly link enemy data
+		
+		0x0034	-	Offset to Enemy Data
+		0x0038	-	Enemy Data Length
+		0x003C	-	Offset to Moves Data
+		0x0040	-	Moves Data Length
+		0x0044	-	Offset to Enemy Data v2
+		0x0048	-	Enemy Data v2 Length
+		0x004C	-	Offset to Moves Data v2
+		0x0050	-	Moves Data v2 Length

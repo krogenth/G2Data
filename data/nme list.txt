@@ -1,5 +1,3 @@
-enemies
-
 d01		big foot
 d02		huge catapillar
 d03		chameleon
@@ -30,9 +28,30 @@ d30		dragonoid
 d31		naga queen
 d34		valmar young
 d35		valmar fly
+		TU_1
+		TU_2
+		TU_3
+		TU_4
+		TU_5
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 d51		yeti
 d52		venomous larva
 d53		salamadile
+
 d56		flame toad
 d57		immune cell
 d58		giant mantis
@@ -60,7 +79,24 @@ d81		guardian
 d84		velmar magna
 d85		valmar moth
 
-FIELD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 f01		millenia
 f02		beast-man
@@ -68,13 +104,88 @@ f03		eyeball bat
 f04		tio clone
 f05		millenia
 
-BOSS
+
+
+
+
 z01		valmar's tounge
+z01a	right hand
+z01b	left hand
+z01c	head
+
+
+
+
+
+
 z02		valmar's eye
+z02a	right tendril
+z02b	left tendril
+z02c	eyeball bat
+
+
+
+
+
+
 z03		valmar's claw
+z03a	right arm
+z03b	left arm
+
+
+
+
+
+
+
 z04		melfice
+z04a	sword
+z04b	regenerator
+
+
+
+
+
+
+
 z05		valmar's body
+z05a	right tentacle
+z05b left tentacle
+
+
+
+
+
+
+
 z06		valmar's heart
+z06a	left eye
+z06b	right eye
+
+
+
+
+
+
+
 z07		egg guardian
+z07a	bit
+
+
+
+
+
+
+
+
 z08		valmar core
+z08a	middle head
+z09b	right head
+z09c	left head
+
+
+
+
+
+
 z09		zera valmar
