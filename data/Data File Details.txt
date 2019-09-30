@@ -86,7 +86,7 @@
 		
 }
 
-MODELS {
+MODELS {	//All Ninja formats use POF0, which means pointers go from the start of the chunk, not file
 	
 	.CHR/.CHR2 FILES {
 		
@@ -111,9 +111,65 @@ MODELS {
 			4 byte file length
 		
 	}
-
 		
-	NJCM
+	NJCM {
+		
+		Chunk header types {
+			
+			0x00 - 0x00 null
+			0x01 - 0x05 Bits
+				1 NJD_CB_BA			//Alpha blend												3 bits for alpha SRC and 3 bits for alpha DST
+				2 NJD_CB_DA			//Mipmap “D” adjust											4 bits for “D” adjust
+				3 NJD_CB_EXP		//Specular exponent											5 bits for the exponent
+				4 NJD_CB_CP			//Cache polygon list										8 bits for the cache number
+				5 NJD_CB_DP			//Draw polygon list											8 bits for the cache number
+			0x08 - 0x09 Tiny
+			0x11 - 0x1F Material
+				17 NJD_CM_D			//Diffuse													4 bytes
+				18 NJD_CM_A			//Ambient													4 bytes
+				19 NJD_CM_DA		//Diffuse, Ambient											8 bytes
+				20 NJD_CM_S			//Specular													4 bytes
+				21 NJD_CM_DS		//Diffuse, Specular											8 bytes
+				21 NJD_CM_AS		//Ambient, Specular											8 bytes
+				21 NJD_CM_DAS		//Diffuse, Ambient, Specular								12 bytes
+			0x20 - 0x32 Vertex
+				32 NJD_CV_SH		//x,y,z,1.0F												16 bytes
+				33 NJD_CV_VN_SH		//x,y,z,1.0F,nx,ny,nz,0.0F									32 bytes
+				34 NJD_CV			//x,y,z														12 bytes
+				35 NJD_CV_D8		//x,y,z,D8888												16 bytes
+				36 NJD_CV_UF		//x,y,z,UserFlags32											16 bytes
+				37 NJD_CV_NF		//x,y,z,NinjaFlags32										16 bytes
+				38 NJD_CV_S5		//x,y,z,D565,S565											16 bytes
+				39 NJD_CV_S4		//x,y,z,D4444,S565											16 bytes
+				40 NJD_CV_IN		//x,y,z,D16,S16												16 bytes
+				41 NJD_CV_VN		//x,y,z,nx,ny,nz											24 bytes
+				42 NJD_CV_VN_D8		//x,y,z,nx,ny,nz,D8888										28 bytes
+				43 NJD_CV_VN_UF		//x,y,z,nx,ny,nz,UserFlags32								28 bytes
+				44 NJD_CV_VN_NF		//x,y,z,nx,ny,nz,NinjaFlags32								28 bytes
+				45 NJD_CV_VN_S5		//x,y,z,nx,ny,nz,D565,S565									28 bytes
+				46 NJD_CV_VN_S4		//x,y,z,nx,ny,nz,D4444,S565									28 bytes
+				47 NJD_CV_VN_IN		//x,y,z,nx,ny,nz,D16,S16									28 bytes
+				48 NJD_CV_VNX		//x,y,z,nxyz32												16 bytes
+				49 NJD_CV_VNX_D8	//x,y,z,nxyz32,D8888										20 bytes
+				50 NJD_CV_VNX_UF	//x,y,z,nxyz32,UserFlags32									20 bytes
+			0x38 - 0x3A Volume
+			0x40 - 0x4B Strip
+				65 NJD_CS			//index0(16)												16 bytes
+				66 NJD_CS_UVN		//index0(16), U0(16), V0(16)								48 bytes
+				67 NJD_CS_UVH		//index0(16), U0(16), V0(16)								48 bytes
+				68 NJD_CS_VN		//index0(16), vnx0(16), vny0(16), vnz0(16)					64 bytes
+				69 NJD_CS_UVN_VN	//index0(16), U0(16), V0(16), vnx0(16), vny0(16), vnz0(16)	96 bytes
+				70 NJD_CS_UVH_VN	//index0(16), U0(16), V0(16), vnx0(16), vny0(16), vnz0(16)	96 bytes
+				71 NJD_CS_D8		//index0(16), AR0(16), GB0(16)								48 bytes
+				72 NJD_CS_UVN_D8	//index0(16), U0(16), V0(16), AR0(16), GB0(16)				80 bytes
+				73 NJD_CS_UVH_D8	//index0(16), U0(16), V0(16), AR0(16), GB0(16)				80 bytes
+				74 NJD_CS_2			//index0(16),												16 bytes
+				75 NJD_CS_UVN2		//index0(16), U0a(16), V0a(16), U0b(16), V0b(16)			80 bytes
+				76 NJD_CS_UVH2		//index0(16), U0a(16), V0a(16), U0b(16), V0b(16)			80 bytes
+			0xFF - 0xFF End
+			
+		}
+		
 		4 byte remaining length
 		4 byte evaluation flag
 			0x00000001 Don't apply translation, when x, y, z are 0
@@ -124,29 +180,94 @@ MODELS {
 			0b00100000 ZXY rotation order, apply rotations in LightWave3D order
 			0b01000000 Skip motion
 			0b10000000 Skip shape motion
-		4 byte NJS_MODEL offset	//from start of chunk
-			4 byte NJS_VERTEX_LIST offset
-				2 byte format	//always 0x2900
-				2 byte ???
-				2 byte flags	//always 0x0000
-				2 byte number of vertexes
+		4 byte NJS_MODEL pointer	//from start of model chunk
+			4 byte NJS_VERTEX_LIST pointer	//from start of model chunk
+				1 byte chunk type
+				1 byte flags
+				2 byte chunk length
+				2 byte vertex data offset
+				2 byte vertex count
 				? byte vertex data
 					4[3] byte vertex
-			4 byte NJS_INDICE_LIST offset
+			4 byte NJS_INDICE_LIST pointer	//from start of model chunk
 				"material, tiny, bit, null, strip chunks"
 			4[3] byte float model center
 			4 byte float radius of circumscribed sphere
 		4[3] byte float position
-		4[3] byte uint32_t rotation
+		4[3] byte int32_t rotation
 		4[3] byte float scale
-		4 byte child object offset
-		4 byte sibling object offset
+		4 byte child object pointer	//from start of model chunk
+		4 byte sibling object pointer	//from start of model chunk
+		
+		Bits Chunk
+			2 byte chunk head
+			2 byte flags
+			
+		Tiny Chunk
+			1 byte chunk head
+			1 byte flags
+				0x07 mip_depth
+				0x08 clamp_u
+				0x10 clamp_v
+				0x20 flip_u
+				0x40 flip_v
+			2 byte chunk body
+				13 bits texture ID	//least significant
+				1 bit super sample
+				2 bit filter mode	//most significant
+				
+		Material Chunk
+			1 byte chunk head
+			1 byte flags
+			2 byte chunk length
+			4 byte diffuse color		//chunk head & 0x01
+			4 byte spectacular color	//chunk head & 0x02
+			4 byte ambient color		//chunk head & 0x04
+			
+		Vertex Chunk
+			1 byte chunk head
+			1 byte chunk flag
+			2 byte chunk length
+			2 byte vertex offset
+			2 byte vertex count
+			? byte vertex data
+				4[3] byte vertex
+				
+		Strip Chunk
+			1 byte chunk head
+			1 byte chunk flag
+			2 byte chunk length
+			2 byte chunk count
+			? byte strip data
+				
+	}
+	
+	NMDM {
+		
+		4 byte remaining length
+		1 byte[remaining length] chunk body
+			4 byte motion data
+			4 byte frame count
+			2 byte motion type	//flags for position, rotation, and scale
+				0x01 position
+				0x02 rotation
+				0x04 scale
+			2 byte int_fp	//interpolation & factor count: increment for position/rotation/scale if they are used
+				0x03 factor count
+				0x40 spline interpolation
+				0x80 user interpolation
+		
+		NJS_MDATA
+			4[int_fp] byte factor pointer
+			4[3] byte factor count
+		
+	}
 	
 	CDDH(CHR, CHR2)
 		4 byte remaining header byte length
 			4 byte number of entries
 			4 byte file number
-			4 byte NMDM files offset
+			4 byte NMDM file(s) offset
 				
 	GPHD(CHR, CHR2)
 		4 byte remaining header byte length
