@@ -1,4 +1,62 @@
+.CSO FILES {
+	
+	Chunk type
+		ICFE 	//Interface. Describes any interfaces, and implementing classes, present in the source HLSL.
+		ISGN 	//Input signature
+		OSG5 	//Output signature (SM5)
+		OSGN 	//Output signature
+		PCSG 	//Patch constant signature
+		RDEF 	//Resource definition. Describes constant buffers and resource bindings.
+		SDGB 	//Shader debugging info (old-style)
+		SFI0 	//Not really sure… it stores a value that indicates whether double-precision floating point operations are enabled, but I don’t know why that needs to be in its own chunk
+		SHDR 	//Shader (SM4). The shader itself.
+		SHEX 	//Shader (SM5)
+		SPDB 	//Shader debugging info (new-style)
+		STAT 	//Statistics. Useful statistics about the shader, such as instruction count, declaration count, etc.
+	
+	DXBL
+		16 byte Checksum	//proprietary, likely cannot determine
+		04 byte ???			//always 1
+		04 byte File byte size
+		04 byte Chunk count
+		04 byte RDEF chunk offset
+		04 byte ISGN chunk offset
+		04 byte OSGN chunk offset
+		04 byte SHDR chunk offset
+		04 byte STAT chunk offset
+	
+	CHUNKS {
+		
+		RDEF
+			04 byte Remaining chunk byte size
+			04 byte Constant buffer count
+				04 byte Offset to Constant
+			04 byte Resource binding count
+				04 byte Offset to Resource
+			01 byte Minor Version
+			01 byte Major Version
+			02 byte Program type
+			04 byte Bitflags
+			04 byte Offset to "creator" string
+		
+		ISGN
+			04 byte Remaining chunk byte size
+		
+		OSGN
+			04 byte Remaining chunk byte size
+		
+		SHDR
+			04 byte Remaining chunk byte size
+		
+		STAT
+			04 byte Remaining chunk byte size
+		
+	}
+	
+}
+
 .MDT FILES {
+	
 	CODES			DETAILS
 	0x1A			next page
 	0x1F			next line
@@ -14,38 +72,103 @@
 
 	0x0008	-	# Map Entry Locations 32 byte Entries
 	0x000C	-	Map Entry Locations Offset
-	0x0018	-	# Intances 30 Byte Entries
+	
+	0x0010	-	???
+	0x0014	-	???
+	
+	0x0018	-	# of Intances 30 Byte Entries
 	0x001C	-	Instances Offset
-	0x0028	-	# Movement Scirpts?
+	
+	0x0020	-	# of HTA 72 byte Entries(lots of floating point numbers)
+	0x0024	-	HTA Offset
+	
+	0x0028	-	# of Movement Scripts?
 	0x002C	-	Movement Scripts Offset
-	0x0038	-	# Enemy Groups Positions 104 Byte Entries
+	
+	0x0030	-	# of Unknown 148 byte Entries
+	0x0034	-	Unknown Offset
+	
+	0x0038	-	# of Enemy Groups Positions 104 Byte Entries
 	0x003C	-	Enemy Groups Positions Offset
-	0x0048	-	# Enemy Group Data 120 Byte Entries
+	
+	0x0040	-	# of Unknown 192 byte Entries
+	0x0044	-	Unknown Offset
+	
+	0x0048	-	# of Enemy Group Data 120 Byte Entries
 	0x004C	-	Enemy Group Data Offset
+	
+	0x0050	-	# of MOS 32 byte Entries
+	0x0054	-	MOS Offset
+	
+	0x0058	-	# of Unknown 8 byte Entries(pure floating point numbers)
+	0x005C	-	Unknown Offset
+	
+	0x0060	-	# of unknown 4 byte Entries
+	0x0064	-	Unknown Offset
+	
+	0x0068	-	# of Unknown 12 byte Entries
+	0x006C	-	Unknown offset
+	
+	0x0070	-	# of Unknown 64 byte Entires(check D800.mdt)
+	0x0074	-	Unknown Offset
+	
 	0x0078	-	Dialogue Byte Length
 	0x007C	-	Dialogue Offset
-	0x0080	-	# Unknown 12 Byte Entries
+	
+	0x0080	-	# of Unknown 12 Byte Entries
 	0x0084	-	Unknown Entries Offset
-	0x0088	-	# Unknown 16 Byte Entries
+	
+	0x0088	-	# of Unknown 16 Byte Entries
 	0x008C	-	Unknown Entries Offset
-	0x0090	-	# Unknown 8 Byte Entries
+	
+	0x0090	-	# of Unknown 8 Byte Entries
 	0x0094	-	Unknown Entries Offset
-	0x0098	-	# Icon 32 Byte Entries
-	0x009C	-	Icon Entries Offset(overworld interactables)
-	0x00A0	-	# Unknown Bytes
-	0x00A4	-	Unknown Data
-	0x00A8	-	Length of Shop Data
-	0x00AC	-	Offset to Shop Data
-	0x00B8	-	# Unknown 18 Byte Entries
+	
+	0x0098	-	# of Icon 32 Byte Entries(overworld interactables)
+	0x009C	-	Icon Entries Offset
+	
+	0x00A0	-	# of Unknown Bytes
+	0x00A4	-	Offset to Unknown Data
+	
+	0x00A8	-	Shop Data Length
+	0x00AC	-	Shop Data Offset
+	
+	0x00B0	-	???(so far, always 0x0000)
+	0x00B4	-	???(so far, always 0x0000)
+	
+	0x00B8	-	# of Unknown 18 Byte Entries
 	0x00BC	-	Unknown Entries Offset
-	0x00C0	-	# Unknown 128 Byte Entries
+	
+	0x00C0	-	# of Unknown 128 Byte Entries
 	0x00C4	-	Unknown Entries Offset
+	
+	0x00C8	-	# of Unknown 116 byte Entries(lots of floating point numbers)
+	0x00CC	-	Unknown Offset
+	
+	0x00D0	-	
+	0x00D4	-	
+	
+	0x00D8	-	# of Unknown 44 Bytes
+	0x00DC	-	Unknown Offset
+	
+	0x00E0	-	# of Unknown 112(?) Bytes
+	0x00E4	-	Unknown Offset
+	
+	0x00E8	-	
+	0x00EC	-	
+	
+	0x00F0	-	
+	0x00F4	-	
+	
+	0x00F8	-	
+	0x00FC	-	
 
-	INSTANCES
+	INSTANCES {
+		
 		02 byte ID
 		02 byte Index
 		02 byte ???
-		02 byte Trans
+		02 byte Trans(lation)
 		04 byte X Position Float
 		04 byte Y Position Float
 		04 byte Z Position Float
@@ -56,8 +179,29 @@
 		04 byte CY Float
 		04 byte CZ Float
 		
-	Enemy Groups(104 byte entries)
-		02 byte Index
+	}
+	
+	HTA { (Center = (Minimum + Maximum) / 2)
+		
+		01 byte Shape(?)
+		01 byte Type(?)
+		01 byte Triger(?)
+		05 byte ???
+		01 byte Attribute
+		07 byte ???
+		04 byte X Minimum
+		04 byte Y Minimum
+		04 byte Z Minimum
+		04 byte X Maximum
+		04 byte Y Maximum
+		04 byte Z Maximum
+		32 byte ???
+		
+	}
+		
+	Enemy Positions(104 byte entries) {
+		
+		02 byte Index(+1000)
 		02 byte ???
 		04 byte X position minimum
 		04 byte Z position minimum
@@ -66,11 +210,35 @@
 		04 byte X Position
 		04 byte Y Position
 		04 byte Z Position
+		24 byte ???(6 sets of x, y, z coordinates)
 		
-	ENEMY DATA(120 byte)
+	}
+		
+	ENEMY DATA(120 byte) {
+		
 		02 byte Index
+		22 byte ???
+		02 byte ???
+		02 byte # of enemy
+		02 byte Enemy ID
 		
-	ICONS
+		
+	}
+	
+	MOS Status {
+		
+		02 byte ID + 1
+		02 byte Index(from Dreamcast debug)
+		04 byte ???
+		02 byte X(?) Position
+		02 byte Y(?) Position
+		02 byte Z(?) Position
+		18 byte ???
+		
+	}
+		
+	ICONS {
+		
 		01 byte ID
 		03 byte ???
 		04 byte X Position
@@ -79,6 +247,8 @@
 		08 byte ???
 		06 byte Item Offsets(2 byte)
 		02 byte Flag
+		
+	}
 
 
 	2000.mdt
@@ -130,8 +300,8 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 				19 NJD_CM_DA		//Diffuse, Ambient											8 bytes
 				20 NJD_CM_S			//Specular													4 bytes
 				21 NJD_CM_DS		//Diffuse, Specular											8 bytes
-				21 NJD_CM_AS		//Ambient, Specular											8 bytes
-				21 NJD_CM_DAS		//Diffuse, Ambient, Specular								12 bytes
+				22 NJD_CM_AS		//Ambient, Specular											8 bytes
+				23 NJD_CM_DAS		//Diffuse, Ambient, Specular								12 bytes
 			0x20 - 0x32 Vertex
 				32 NJD_CV_SH		//x,y,z,1.0F												16 bytes
 				33 NJD_CV_VN_SH		//x,y,z,1.0F,nx,ny,nz,0.0F									32 bytes
@@ -171,41 +341,41 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 		}
 		
 		4 byte remaining length
-		4 byte evaluation flag
-			0x00000001 Don't apply translation, when x, y, z are 0
-			0b00000010 Don't apply rotation, when rot_x, rot_y, rot_z are 0
-			0b00000100 Don't apply scale, when scl_x, scl_y, scl_z are 0
-			0b00001000 Don't render model
-			0b00010000 Break child trace, don't render child objects
-			0b00100000 ZXY rotation order, apply rotations in LightWave3D order
-			0b01000000 Skip motion
-			0b10000000 Skip shape motion
-		4 byte NJS_MODEL pointer	//from start of model chunk
-			4 byte NJS_VERTEX_LIST pointer	//from start of model chunk
-				1 byte chunk type
-				1 byte flags
-				2 byte chunk length
-				2 byte vertex data offset
-				2 byte vertex count
-				? byte vertex data
-					4[3] byte vertex
-			4 byte NJS_INDICE_LIST pointer	//from start of model chunk
-				"material, tiny, bit, null, strip chunks"
-			4[3] byte float model center
-			4 byte float radius of circumscribed sphere
-		4[3] byte float position
-		4[3] byte int32_t rotation
-		4[3] byte float scale
-		4 byte child object pointer	//from start of model chunk
-		4 byte sibling object pointer	//from start of model chunk
+			4 byte evaluation flag
+				0x00000001 Don't apply translation, when x, y, z are 0
+				0b00000010 Don't apply rotation, when rot_x, rot_y, rot_z are 0
+				0b00000100 Don't apply scale, when scl_x, scl_y, scl_z are 0
+				0b00001000 Don't render model
+				0b00010000 Break child trace, don't render child objects
+				0b00100000 ZXY rotation order, apply rotations in LightWave3D order
+				0b01000000 Skip motion
+				0b10000000 Skip shape motion
+			4 byte NJS_MODEL pointer	//from start of model chunk
+				4 byte NJS_VERTEX_LIST pointer	//from start of model chunk
+					1 byte chunk type
+					1 byte chunk flag
+					2 byte chunk length?
+					2 byte vertex data offset
+					2 byte vertex count
+					? byte vertex data
+						4[3] byte vertex
+				4 byte NJS_INDICE_LIST pointer	//from start of model chunk
+					"material, tiny, bit, null, strip chunks"
+				4[3] byte float model center
+				4 byte float radius of circumscribed sphere
+			4[3] byte float position
+			4[3] byte int32_t rotation
+			4[3] byte float scale
+			4 byte child object pointer	//from start of model chunk
+			4 byte sibling object pointer	//from start of model chunk
 		
 		Bits Chunk
 			2 byte chunk head
-			2 byte flags
+			2 byte chunk flag
 			
 		Tiny Chunk
 			1 byte chunk head
-			1 byte flags
+			1 byte chunk flag
 				0x07 mip_depth
 				0x08 clamp_u
 				0x10 clamp_v
@@ -218,8 +388,8 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 				
 		Material Chunk
 			1 byte chunk head
-			1 byte flags
-			2 byte chunk length
+			1 byte chunk flag
+			2 byte chunk length?
 			4 byte diffuse color		//chunk head & 0x01
 			4 byte spectacular color	//chunk head & 0x02
 			4 byte ambient color		//chunk head & 0x04
@@ -227,7 +397,7 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 		Vertex Chunk
 			1 byte chunk head
 			1 byte chunk flag
-			2 byte chunk length
+			2 byte chunk length?
 			2 byte vertex offset
 			2 byte vertex count
 			? byte vertex data
@@ -236,13 +406,13 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 		Strip Chunk
 			1 byte chunk head
 			1 byte chunk flag
-			2 byte chunk length
+			2 byte chunk length?
 			2 byte chunk count
 			? byte strip data
 				
 	}
 	
-	NMDM {
+	NMDM(Ninja Model Motion) {
 		
 		4 byte remaining length
 		1 byte[remaining length] chunk body
@@ -257,56 +427,81 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 				0x40 spline interpolation
 				0x80 user interpolation
 		
-		NJS_MDATA
+		NJS_MDATA(Motion Data)
 			4[int_fp] byte factor pointer
 			4[3] byte factor count
 		
 	}
 	
-	CDDH(CHR, CHR2)
+	CDDH(CHR, CHR2) {
+		
 		4 byte remaining header byte length
 			4 byte number of entries
 			4 byte file number
 			4 byte NMDM file(s) offset
+			
+	}
 				
-	GPHD(CHR, CHR2)
+	GPHD(CHR, CHR2) {
+		
 		4 byte remaining header byte length
 			4 byte ???
 			
-	MIXL(CHR, CHR2)
+	}
+			
+	MIXL(CHR, CHR2) {
+		
 		4 byte remaining header byte length
 			1 byte ???
 			1 byte number of ???
 				1 byte incremental to number(end padded with 0xFF to nearest 4 bytes)
+				
+	}
 					
-	GIXL(CHR)
+	GIXL(CHR) {
+		
 		4 byte remaining header byte length
 			4 byte number of entries
 				4 byte ???
 				
-	GAMT(CHR, CHR2)
+	}
+				
+	GAMT(CHR, CHR2) {
+		
 		4 byte remaining header byte length
 			4 byte ???	//only 0 or 1 so far
+			
+	}
 				
-	MCS_(CHR)
+	MCS_(CHR) {
+		
 		4 byte remaining length
 			4 byte number of entries
 				4 byte ???
 				4 byte 0x????FFFF end	//included in number of entires
+				
+	}
 	
-	NJTL
+	NJTL(Ninja Textlist) {
+		
 		4 byte remaining length
 			4 byte NJS_TEXNAME pointer(offset from current position)
 			2 byte number of textures
 				4 byte texture number
 				8 byte ???
+				
+	}
 					
-	GBIX
+	GBIX(Global Index) {
+		
 		4 byte remaining length
 			4 byte Global Index
 			4 byte 0x00000000 or 0x20202020
+			
+	}
 	
-	PVRT
+	PVRT {
+		
 		4 byte remaining length
 		1 byte pixel format	//2 byte per pixel
 			0x00 ARGB1555	//1-bit A, 5-bit RGB
@@ -329,10 +524,15 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 		2 byte texture height
 		? byte palatte data
 		? byte texture data		//if mipmap, go smallest to largest
+		
+	}
 					
-	POF0
+	POF0 {
+		
 		4 byte remaining length
 			4 byte ???
+			
+	}
 
 	*.PVP FILES {
 		
@@ -343,6 +543,12 @@ MODELS {	//All Ninja formats use POF0, which means pointers go from the start of
 			4 byte ???	//0x06000000
 			4 byte ???	//0x00000001
 			
+		
+	}
+	
+	NJCM(Ninja Chunk Model Tree) {
+		
+		
 		
 	}
 
