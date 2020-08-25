@@ -1,6 +1,6 @@
 Grandia 2 Data reading/writing
  - Programming by krogenth: http://steamcommunity.com/profiles/76561198163774445
- - Thanks to woog for providing most data/afs/xls_data/\*.bin entries: http://steamcommunity.com/profiles/76561198008094982/
+ - Thanks to woog for providing most data/afs/xls_data/*.bin entries: http://steamcommunity.com/profiles/76561198008094982/
 
 What this does:
 
@@ -22,8 +22,8 @@ Other information:
 For those seeking information on files not handled yet(particularly \*.pvp, \*.nj, \*.dat, etc.) check out this Github repo:
 https://github.com/bogglez/Ninja-Lib/tree/master/documentation
 
-For \*.nj files(data/afs/map/\*/\*.chr, data/afs/model/\*.dat) check out:
+For \*.nj files(data/afs/map/*/*.chr, data/afs/model/*.dat) check out:
 http://sharnoth.com/psodevwiki/format/nj
 
-For \*.njm files(data/afs/map/\*/\*.chr, data/afs/map/\*/\*.chr2) check out:
+For \*.njm files(data/afs/map/*/*.chr, data/afs/map/*/*.chr2) check out:
 http://sharnoth.com/psodevwiki/dreamcast/njm
