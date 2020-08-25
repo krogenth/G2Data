@@ -1,6 +1,6 @@
 Grandia 2 Data reading/writing
  - Programming by krogenth: http://steamcommunity.com/profiles/76561198163774445
- - Thanks to woog for providing most data entries: http://steamcommunity.com/profiles/76561198008094982/
+ - Thanks to woog for providing most data/afs/xls_data/\*.bin entries: http://steamcommunity.com/profiles/76561198008094982/
 
 What this does:
 
