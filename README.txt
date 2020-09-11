@@ -1,3 +1,5 @@
+THIS IS AN OUTDATED VERSION, PLEASE VIEW THE UPDATED VERSION HERE: https://github.com/krogenth/G2DataGUI
+
 Grandia 2 Data reading/writing
  - Programming by krogenth: http://steamcommunity.com/profiles/76561198163774445
  - Thanks to woog for providing most data/afs/xls_data/*.bin entries: http://steamcommunity.com/profiles/76561198008094982/
